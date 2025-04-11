@@ -1,5 +1,3 @@
-#requires -version 7.4
-
 Function Get-PSPodcast {
     [cmdletbinding()]
     [OutputType('PSPodcastInfo')]
