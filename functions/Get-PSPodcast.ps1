@@ -2,7 +2,10 @@ Function Get-PSPodcast {
     [cmdletbinding()]
     [OutputType('PSPodcastInfo')]
     Param(
-        [Parameter(Position = 0, HelpMessage = 'The number of most recent episodes to show. The default is 1. The maximum is 100.')]
+        [Parameter(
+            Position = 0,
+            HelpMessage = 'The number of most recent episodes to show. The default is 1. The maximum is 100.'
+            )]
         [ValidateRange(1, 100)]
         [int]$Last = 1
     )
@@ -63,22 +66,4 @@ Function Get-PSPodcast {
 
 
 
-<#
-    title       : {PowerShell Summit Bar Sessions 2025 - Frank Lesniak, PowerShell Summit Bar Sessions 2025 - Frank Lesniak}
-    link        : https://powershellpodcast.podbean.com/e/the-powershell-summit-bar-sessions-frank-lesniak/
-    comments    : https://powershellpodcast.podbean.com/e/the-powershell-summit-bar-sessions-frank-lesniak/#comments
-    pubDate     : Wed, 09 Apr 2025 15:13:01 -0600
-    guid        : guid
-    description : description
-    encoded     : encoded
-    enclosure   : enclosure
-    summary     : summary
-author      : PDQ.com
-
-explicit    : false
-block       : No
-duration    : 24:06
-episode     : 168
-episodeType : full
-#>
 

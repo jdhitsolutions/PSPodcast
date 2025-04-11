@@ -2,9 +2,13 @@ Function Show-LatestPSPodcast {
     [cmdletbinding()]
     [alias('pspod')]
     Param(
+        [Parameter(HelpMessage = "The color of the title text.")]
         [string]$TitleColor = "SpringGreen2",
+        [Parameter(HelpMessage = "The color of the link text.")]
         [string]$LinkColor = "DeepSkyBlue2",
+        [Parameter(HelpMessage = "The color of the border.")]
         [string]$BorderColor = "GreenYellow",
+        [Parameter(HelpMessage = "Display the podcast information once every 24 hours. Use this when running this command in your profile script.")]
         [switch]$Profile
     )
 
