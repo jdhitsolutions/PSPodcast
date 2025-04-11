@@ -25,9 +25,8 @@ Describe "Module $ModuleName" -Tag Module {
     }
 
     Context Manifest {
-        It 'Should have a module manifest' {
+        It "Should have a module manifest: $modulePath" {
             $modulePath | Should -Exist
-            $thisModule.ModuleType | Should -Be 'Script'
         }
         It 'Should have a defined RootModule' {
             $thisModule.RootModule | Should -Be "$($thisModule.Name).psm1"
@@ -58,13 +57,13 @@ Describe "Module $ModuleName" -Tag Module {
         }
         It 'Should have a LicenseUri' {
             $thisModule.PrivateData.PSData.licenseUri | Should -Not -BeNullOrEmpty
-        } -pending
+        }
         It 'Should have a defined ProjectURI' {
             $thisModule.PrivateData.PSData.ProjectUri | Should -Not -BeNullOrEmpty
-        } -pending
+        }
         It 'Should have defined tags' {
             $thisModule.PrivateData.PSData.Tags.count | Should -BeGreaterThan 0
-        } -pending
+        }
 
     }
     Context 'Module Content' {
@@ -89,8 +88,8 @@ Describe "Module $ModuleName" -Tag Module {
         } -pending
         It 'Should have external help' {
             "..\en-us"  | Should -Exist
-            "..\en-us\-help.xml" | Should -Exist
-        } -pending
+            "..\en-us\*-help.xml" | Should -Exist
+        }
         It 'Should have a Pester test' {
             #this is probably silly since I'm using a Pester test.
             ".\*tests.ps1" | Should -Exist

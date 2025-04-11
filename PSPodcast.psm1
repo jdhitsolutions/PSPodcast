@@ -19,7 +19,8 @@ $modVer = (Test-ModuleManifest $PSScriptRoot\$modName.psd1).Version
         Where-Object name -like "$WordToComplete*"|
         Select-Object -ExpandProperty Name |
         ForEach-Object {
-            [System.Management.Automation.CompletionResult]::new([Spectre.Console.Color]::$_, [Spectre.Console.Color]::$_, 'ParameterValue', $_)
+            $show = "[$_]$($_)[/]" | Out-SpectreHost
+            [System.Management.Automation.CompletionResult]::new([Spectre.Console.Color]::$_, $show, 'ParameterValue', $_)
         }
     }
 }

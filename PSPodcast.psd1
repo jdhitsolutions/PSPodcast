@@ -3,7 +3,7 @@
 #
 @{
     RootModule           = 'PSPodcast.psm1'
-    ModuleVersion        = '0.1.0'
+    ModuleVersion        = '0.2.0'
     CompatiblePSEditions = 'Core'
     GUID                 = '3618f898-6fe7-4d94-82e3-23926498ff6d'
     Author               = 'Jeff Hicks'
@@ -12,7 +12,7 @@
     Description          = 'A few commands to get and display information of episodes of The PowerShell Podcast. This module is not officially affiliated with the podcast or PDQ.com. The module requires PowerShell 7.'
     PowerShellVersion    = '7.4'
     TypesToProcess       = @()
-    FormatsToProcess     = @()
+    FormatsToProcess     = @('formats/PSPodcastInfo.format.ps1xml')
     FunctionsToExport    = 'Get-PSPodcast', 'Show-LatestPSPodcast'
     CmdletsToExport      = @()
     VariablesToExport    = @()
@@ -27,5 +27,4 @@
             ExternalModuleDependencies = @('pwshSpectreConsole')
         } # End of PSData hashtable
     } # End of PrivateData hashtable
-
 }

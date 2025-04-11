@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-PSPodcast</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>PSPodcast</command:noun>
+      <maml:description>
+        <maml:para>Get recent PowerShell Podcast episode information.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Use this command to get information about the most recent episodes of the PowerShell Podcast based on the podcast's RSS feed. You can get between 1 and 100 of the most recent episodes.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Last</maml:name>
+          <maml:description>
+            <maml:para>The number of most recent episodes to show. The default is 1. The maximum is 100.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Last</maml:name>
+        <maml:description>
+          <maml:para>The number of most recent episodes to show. The default is 1. The maximum is 100.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PSPodcastInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcast -last 2
+
+   Show: PowerShell Summit Bar Sessions 2025 - David R [Episode #169]
+
+Date      Length   Description
+----      ------   -----------
+4/10/2025 00:13:26 In this casual bar-session chat recorded at the PowerShell + DevOps Global Summit 2025, host Andrew
+                   Pla sits down with David R, a first-time attendee with a passion for learning PowerShell. David
+                   shares how the PowerShell Podcast itself inspired him to attend and helped shape his scripting
+                   journey. What began as a work assignment turned into a powerful learning path, community connection,
+                   and a personal transformation.
+
+   Show: PowerShell Summit Bar Sessions 2025 - Frank Lesniak [Episode #168]
+
+Date     Length   Description
+----     ------   -----------
+4/9/2025 00:24:06 In this episode of the PowerShell Summit 2025 Bar Sessions, Frank Lesniak makes a triumphant return
+                  to the podcast. Frank has taken the reigns In this two-sided interview, Frank flips the script and
+                  interviews Andrew, but only after we talk about how his week is going, fine dining, how to grow in
+                  your career and capitalize on opportunity, the value of empowering others, and more!</dev:code>
+        <dev:remarks>
+          <maml:para>The default output is a table formatted with $PSStyle.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcast 1 | Format-List
+
+Title       : PowerShell Summit Bar Sessions 2025 - David R
+Date        : 4/10/2025 5:00:00 PM
+Description : In this casual bar-session chat recorded at the PowerShell + DevOps Global Summit 2025, host Andrew Pla
+              sits down with David R, a first-time attendee with a passion for learning PowerShell. David shares how
+              the PowerShell Podcast itself inspired him to attend and helped shape his scripting journey. What began
+              as a work assignment turned into a powerful learning path, community connection, and a personal
+              transformation.
+Length      : 00:13:26
+Link        : https://powershellpodcast.podbean.com/e/powershell-summit-bar-sessions-2025-david-r/
+Episode     : 169</dev:code>
+        <dev:remarks>
+          <maml:para>When viewed in Windows Terminal, the link property should be clickable.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/188eea</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Show-LatestPSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Show-LatestPSPodcast</command:name>
+      <command:verb>Show</command:verb>
+      <command:noun>LatestPSPodcast</command:noun>
+      <maml:description>
+        <maml:para>Display the most recent PowerShell Podcast episode.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Show-LatestPSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>TitleColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the title text. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>SpringGreen2</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>LinkColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the link text. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>DeepSkyBlue2</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>BorderColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>GreenYellow</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Profile</maml:name>
+          <maml:description>
+            <maml:para>Display the podcast information once every 24 hours. Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>BorderColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>GreenYellow</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>LinkColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the link text. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>DeepSkyBlue2</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Profile</maml:name>
+        <maml:description>
+          <maml:para>Display the podcast information once every 24 hours. Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>TitleColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the title text. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>SpringGreen2</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Spectre.Console.Panel</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Show-LatestPSPodcast</dev:code>
+        <dev:remarks>
+          <maml:para>This will display a formatted Spectre console panel. You can adjust the colors using the command parameters.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Show-LatestPSPodcast -profile</dev:code>
+        <dev:remarks>
+          <maml:para>Only show the podcast information once every 24 hours. Use this when running this command in your profile script.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/dc7824</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-SpectreDemoColors</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+</helpItems>

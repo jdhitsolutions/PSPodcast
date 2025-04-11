@@ -1,6 +1,7 @@
 Function Show-LatestPSPodcast {
     [cmdletbinding()]
     [alias('pspod')]
+    [OutputType('Spectre.Console.Panel')]
     Param(
         [Parameter(HelpMessage = "The color of the title text.")]
         [string]$TitleColor = "SpringGreen2",
