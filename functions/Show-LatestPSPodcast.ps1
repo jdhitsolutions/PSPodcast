@@ -13,6 +13,9 @@ Function Show-LatestPSPodcast {
         [switch]$Profile
     )
 
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Using pwshSpectreConsole version $((Get-Module pwshSpectreConsole).version)"
     <#
         The path to the flag file used with the -Profile parameter
         to limit display to once every 24 hours.
@@ -23,8 +26,11 @@ Function Show-LatestPSPodcast {
 
     #bail out if the flag is less than 24 hours old and the -Profile switch is used
     if ($profile -AND $flag) {
+        Write-Verbose "[$((Get-Date).TimeOfDay)] Checking the flag file $profileFlag"
         $flagAge = New-TimeSpan -Start $flag.LastWriteTime -End (Get-Date)
+        Write-Verbose "[$((Get-Date).TimeOfDay)] The flag file age is $flagAge"
         if ($flagAge.TotalHours -lt 24) {
+            Write-Verbose "[$((Get-Date).TimeOfDay)] Aborting the command."
             Return
         }
     }
@@ -33,12 +39,14 @@ Function Show-LatestPSPodcast {
         $r = Get-PSPodcast -Last 1 -ErrorAction Stop
     }
     Catch {
+        #this is a catch all for any errors in the Get-PSPodcast function
         Write-Error "Failed to retrieve the latest episode of the PowerShell Podcast. $($_.Exception.Message)"
+         Write-Verbose "[$((Get-Date).TimeOfDay)] Aborting the command."
         return
     }
 
     if ($r) {
-
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Processing episode $($r.episode)"
     #Define the text to display in the panel
     $show = @"
 [bold $TitleColor]$($r.title) :microphone: $($r.Length)[/]
@@ -50,7 +58,7 @@ Function Show-LatestPSPodcast {
 
         #define the panel title
         $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
-
+        Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
         $paramHash = @{
             Data   = $show
             Header  = $title
@@ -61,8 +69,11 @@ Function Show-LatestPSPodcast {
         Format-SpectrePanel @paramHash
 
         if ($Profile) {
+        Write-Verbose "[$((Get-Date).TimeOfDay)] Updating the flag file"
             $r | ConvertTo-JSON | Out-File -FilePath $profileFlag -Force -Encoding utf8
         }
     } #if podcast data
+
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 } #close function
 

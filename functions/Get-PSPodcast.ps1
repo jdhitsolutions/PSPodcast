@@ -5,9 +5,9 @@ Function Get-PSPodcast {
         [Parameter(
             Position = 0,
             HelpMessage = 'The number of most recent episodes to show. The default is 1. The maximum is 100.'
-            )]
+        )]
         [ValidateRange(1, 100)]
-        [int]$Last = 1
+        [int]$Last = 4
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -45,14 +45,31 @@ Function Get-PSPodcast {
             else {
                 Write-Error "Invalid duration format: $($item.duration)"
             }
+
+            [regex]$link = 'http(s)?:\/\/.*'
+            #extract links
+            $Links = $link.Matches($item.summary.'#cdata-section').value.Foreach({$_.trim()})
+            #get the YouTube link if it exists
+            [regex]$watchLink = 'Power[Ss]hell Podcast.*?(YouTube)?:\shttps:\/\/(www\.)?you.*'
+            [regex]$YT = 'https:\/\/(www\.)?you.*\w'
+            $linkMatch = $watchLink.Match($item.summary.'#cdata-section').value
+            if ($linkMatch) {
+                $YouTubeLink = $yt.match($linkMatch).value
+            }
+            else {
+                $YouTubeLink = $null
+            }
             [PSCustomObject]@{
-                PSTypeName  = 'PSPodcastInfo'
-                Title       = $item.title[0]
-                Date        = $item.pubDate -as [datetime]
-                Description = ($item.summary.'#cdata-section' -split "`n")[0]
-                Length      = $runTime
-                Link        = $item.link
-                Episode     = $item.episode
+                PSTypeName   = 'PSPodcastInfo'
+                Title        = $item.title[0]
+                Date         = $item.pubDate -as [datetime]
+                Description  = ($item.summary.'#cdata-section' -split "`n")[0]
+                Length       = $runTime
+                Link         = $item.link
+                Episode      = $item.episode
+                DownloadLink = $item.enclosure.url
+                ShowLinks    = $Links -split " "
+                YouTube      = $YouTubeLink
             }
         } #foreach item
         #clean up the temp file

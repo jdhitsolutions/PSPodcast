@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to get information about the most recent episodes of the PowerShell Podcast based on the podcast's RSS feed. You can get between 1 and 100 of the most recent episodes.</maml:para>
+      <maml:para>Use this command to get information about the most recent episodes of the PowerShell Podcast based on the podcast's RSS feed. The default is the 4 most recent episodes. You can get between 1 and 100 of the most recent episodes.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -18,14 +18,14 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Last</maml:name>
           <maml:description>
-            <maml:para>The number of most recent episodes to show. The default is 1. The maximum is 100.</maml:para>
+            <maml:para>The number of most recent episodes to show. The default is 4. The maximum is 100.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>4</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -33,14 +33,14 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Last</maml:name>
         <maml:description>
-          <maml:para>The number of most recent episodes to show. The default is 1. The maximum is 100.</maml:para>
+          <maml:para>The number of most recent episodes to show. The default is 4. The maximum is 100.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>4</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -77,20 +77,26 @@
 
 Date      Length   Description
 ----      ------   -----------
-4/10/2025 00:13:26 In this casual bar-session chat recorded at the PowerShell + DevOps Global Summit 2025, host Andrew
-                   Pla sits down with David R, a first-time attendee with a passion for learning PowerShell. David
-                   shares how the PowerShell Podcast itself inspired him to attend and helped shape his scripting
-                   journey. What began as a work assignment turned into a powerful learning path, community connection,
-                   and a personal transformation.
+4/10/2025 00:13:26 In this casual bar-session chat recorded at the PowerShell +
+                   DevOps Global Summit 2025, host Andrew Pla sits down with
+                   David R, a first-time attendee with a passion for learning
+                   PowerShell. David shares how the PowerShell Podcast itself
+                   inspired him to attend and helped shape his scripting
+                   journey. What began as a work assignment turned into a
+                   powerful learning path, community connection, and a personal
+                   transformation.
 
    Show: PowerShell Summit Bar Sessions 2025 - Frank Lesniak [Episode #168]
 
 Date     Length   Description
 ----     ------   -----------
-4/9/2025 00:24:06 In this episode of the PowerShell Summit 2025 Bar Sessions, Frank Lesniak makes a triumphant return
-                  to the podcast. Frank has taken the reigns In this two-sided interview, Frank flips the script and
-                  interviews Andrew, but only after we talk about how his week is going, fine dining, how to grow in
-                  your career and capitalize on opportunity, the value of empowering others, and more!</dev:code>
+4/9/2025 00:24:06 In this episode of the PowerShell Summit 2025 Bar Sessions,
+                  Frank Lesniak makes a triumphant return to the podcast. Frank
+                  has taken the reigns In this two-sided interview, Frank flips
+                  the script and interviews Andrew, but only after we talk
+                  about how his week is going, fine dining, how to grow in your
+                  career and capitalize on opportunity, the value of empowering
+                  others, and more!</dev:code>
         <dev:remarks>
           <maml:para>The default output is a table formatted with $PSStyle.</maml:para>
         </dev:remarks>
@@ -100,17 +106,39 @@ Date     Length   Description
         <dev:code>PS C:\&gt; Get-PSPodcast 1 | Format-List
 
 Title       : PowerShell Summit Bar Sessions 2025 - David R
-Date        : 4/10/2025 5:00:00 PM
-Description : In this casual bar-session chat recorded at the PowerShell + DevOps Global Summit 2025, host Andrew Pla
-              sits down with David R, a first-time attendee with a passion for learning PowerShell. David shares how
-              the PowerShell Podcast itself inspired him to attend and helped shape his scripting journey. What began
-              as a work assignment turned into a powerful learning path, community connection, and a personal
-              transformation.
+Date        : 4/10/2025
+Description : In this casual bar-session chat recorded at the PowerShell +
+              DevOps Global Summit 2025, host Andrew Pla sits down with David
+              R, a first-time attendee with a passion for learning PowerShell.
+              David shares how the PowerShell Podcast itself inspired him to
+              attend and helped shape his scripting journey. What began as a
+              work assignment turned into a powerful learning path, community
+              connection, and a personal transformation.
+Episode     : 169
 Length      : 00:13:26
-Link        : https://powershellpodcast.podbean.com/e/powershell-summit-bar-sessions-2025-david-r/
-Episode     : 169</dev:code>
+Online      : https://powershellpodcast.podbean.com/e/powershell-summit-bar-sess
+              ions-2025-david-r/
+ShowLinks   : {}
+YouTube     :</dev:code>
         <dev:remarks>
           <maml:para>When viewed in Windows Terminal, the link property should be clickable.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $r[5] | Select-Object Links
+
+Title     : How to Build an IT Career from the Ground Up with Kevin Apolinario
+            (KevTech)
+Date      : 3/24/2025 10:00:00 AM
+Online    : https://powershellpodcast.podbean.com/e/how-to-build-an-it-career-fr
+            om-the-ground-up-with-kevin-apolinario-kevtech/
+YouTube   : https://youtu.be/RrNyh6EuD_Q
+ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
+            https://pdq.com/the-powershell-podcast,
+            https://youtu.be/RrNyh6EuD_Q}</dev:code>
+        <dev:remarks>
+          <maml:para>The Links property is a property set. The variable $r holds the results of previously run Get-PSPodcast command.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -121,6 +149,296 @@ Episode     : 169</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Show-LatestPSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Save-PSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-PSPodcastShowNotes</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>PSPodcastShowNotes</command:noun>
+      <maml:description>
+        <maml:para>Get podcast show notes.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of ShowNotes.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcastShowNotes</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>PSPodcastInfo</maml:name>
+          <maml:description>
+            <maml:para>The PSPodcastInfo object</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>TitleColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the title text. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Yellow</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>BorderColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>GreenYellow</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>BorderColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>GreenYellow</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>PSPodcastInfo</maml:name>
+        <maml:description>
+          <maml:para>The PSPodcastInfo object</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>TitleColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the title text. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Yellow</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>PSPodcastInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Spectre.Console.Panel</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $r[3] | Get-PSPodcastShowNotes</dev:code>
+        <dev:remarks>
+          <maml:para>Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre console panel. You can adjust the colors using the command parameters.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Show-LatestPSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Save-PSPodcast</command:name>
+      <command:verb>Save</command:verb>
+      <command:noun>PSPodcast</command:noun>
+      <maml:description>
+        <maml:para>Download a podcast episode</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Use this command to download an MP3 file from a podcast episode. You will need to pass a result from Get-PSPodcast to download that episode. The default location is $HOME. The file name will be "PowerShellPodcast-&lt;episode number&gt;.mp3".</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Save-PSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>The path or folder where the podcast will be saved.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$HOME</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+          <maml:name>PSPodcastInfo</maml:name>
+          <maml:description>
+            <maml:para>The PSPodcastInfo object</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:description>
+            <maml:para>Show the downloaded file.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <maml:name>PSPodcastInfo</maml:name>
+        <maml:description>
+          <maml:para>The PSPodcastInfo object</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Passthru</maml:name>
+        <maml:description>
+          <maml:para>Show the downloaded file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The path or folder where the podcast will be saved.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$HOME</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>PSPodcastInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.IO.FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $r = Get-PSPodcast -last 5
+PS C:\&gt; $r[0] | Save-PSPodcast -Path d:\ -Passthru
+
+    Directory: D:\
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           4/12/2025 12:41 PM       32255999 PowerShellPodcast-169.mp3</dev:code>
+        <dev:remarks>
+          <maml:para>Save the most recent podcast episode to the D:\ drive.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/df3010</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcast</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

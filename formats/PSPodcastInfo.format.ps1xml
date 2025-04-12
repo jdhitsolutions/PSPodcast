@@ -58,5 +58,52 @@ https://github.com/jdhitsolutions/PSScriptTools
         </TableRowEntries>
       </TableControl>
     </View>
+    <View>
+      <!--Created 04/12/2025 12:09:20 by PROSPERO\Jeff-->
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>PSPodcastInfo</TypeName>
+      </ViewSelectedBy>
+      <ListControl>
+        <listEntries>
+          <listEntry>
+            <ListItems>
+              <ListItem>
+                <Label>Title</Label>
+                <PropertyName>Title</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Date</Label>
+                <ScriptBlock>$_.Date.ToShortDateString()</ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <Label>Description</Label>
+                <PropertyName>Description</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Episode</Label>
+                <PropertyName>Episode</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Length</Label>
+                <PropertyName>Length</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Online</Label>
+                <PropertyName>Online</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>ShowLinks</Label>
+                <PropertyName>ShowLinks</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>YouTube</Label>
+                <PropertyName>YouTube</PropertyName>
+              </ListItem>
+            </ListItems>
+          </listEntry>
+        </listEntries>
+      </ListControl>
+    </View>
   </ViewDefinitions>
 </Configuration>
