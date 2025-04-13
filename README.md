@@ -10,7 +10,7 @@ Install-PSResource PSPodcast
 
 This is a relatively simple module designed to get and display information about recent episodes of [The PowerShell Podcast](https://powershellpodcast.podbean.com/).
 
->*This module is not affiliated with The PowerShell Podcast or PDQ.com.*
+> *This module is not affiliated with The PowerShell Podcast or PDQ.com.*
 
 ## [Get-PSPodcast](docs/Get-PSPodcast.md)
 
@@ -76,7 +76,7 @@ The file name uses the format "PowerShellPodcast-<episode number>.mp3".
 
 ## [Get-PSPodcastShowNotes](docs/Get-PSPodcastShowNotes.md)
 
-The `PSPodcastInfo` object includes a number of properties that point to online links. The object has a property set called `Links` which makes it easy.
+The `PSPodcastInfo` object includes a number of properties that point to online links. The object has a property set called `Links` which makes it easy to see all of them at once.
 
 ```powershell
 PS C:\> $r[5] | Select Links
@@ -96,7 +96,7 @@ You can also use the `Get-PSPodcastShowNotes` function, which has an alias of `s
 
 ![Get-PSPodcastShowNotes](images/shownotes.png)
 
-The output is displayed with a formatted Spectre console panel. The title should be a clickable link to the show online. The links should also be clickable in Windows Terminal.
+The output is displayed with a formatted Spectre Console panel. The title should be a clickable link to the show online. The links should also be clickable in Windows Terminal.
 
 You can adjust the border and title colors. The parameters have tab completion for the color values. See the next section.
 
@@ -106,11 +106,11 @@ The `Show-LatestPSPodcast` function is a wrapper around `Get-PSPodcast`. It is d
 
 ![Show-LatestPSPodcast](images/pspod.png)
 
-You can customize the border, title, and link colors using any valid `Spectre.Console.Color` value. The function as an argument completer for the colo parameters. This will give you tab completion. And if you press`Ctrl+Space`, the PSReadLin module will display options formatted in the selected color.
+You can customize the border, title, and link colors using any valid `Spectre.Console.Color` value. The function as an argument completer for the colo parameters. This will give you tab completion. And if you press`Ctrl+Space`, the PSReadLine module will display options formatted in the selected color.
 
 ![color completer](images/tab-complete-color.png)
 
-If you press `Ctr;+Space` before specifying a color, you will be prompted and can see all available colors.
+If you press `Ctrl+Space` before specifying a color, you will be prompted and can see all available colors.
 
 ![all color completer](images/tab-complete-all-colors.png)
 
@@ -154,4 +154,4 @@ If you uninstall the module you will need to manually delete the flag file.
 
 ## Road Map
 
-If you have an enhancement suggestion or question, please use the project's [Discussion](https://github.com/jdhitsolutions/PSPodcast/discussions) board.
+I have a few more ideas in mind and there will be a few more updates in the next few weeks. If you have an enhancement suggestion or question, please use the project's [Discussion](https://github.com/jdhitsolutions/PSPodcast/discussions) board.
