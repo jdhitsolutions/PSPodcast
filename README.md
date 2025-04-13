@@ -96,7 +96,7 @@ You can also use the `Get-PSPodcastShowNotes` function, which has an alias of `s
 
 ![Get-PSPodcastShowNotes](images/shownotes.png)
 
-The output is for formatted Spectre panel. The title should be a clickable link to the show online. The links should also be clickable in Windows Terminal.
+The output is displayed with a formatted Spectre console panel. The title should be a clickable link to the show online. The links should also be clickable in Windows Terminal.
 
 You can adjust the border and title colors. The parameters have tab completion for the color values. See the next section.
 
