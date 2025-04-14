@@ -1,3 +1,5 @@
+#TODO: add function tests
+
 BeforeDiscovery {
     # Import the module manifest
     $module = $PSCommandPath.Replace('.tests.ps1', '.psd1')
@@ -82,10 +84,10 @@ Describe "Module $ModuleName" -Tag Module {
         It 'Should have a markdown file for every exported function' {
             $functions =$thisModule.ExportedFunctions
             $functions.GetEnumerator() | ForEach-Object {
-                $mdFile = "..\docs\$(.Key).md"
+                $mdFile = "..\docs\$($_.Key).md"
                 $mdFile | Should -Exist
             }
-        } -pending
+        }
         It 'Should have external help' {
             "..\en-us"  | Should -Exist
             "..\en-us\*-help.xml" | Should -Exist

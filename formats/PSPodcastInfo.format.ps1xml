@@ -15,7 +15,9 @@ https://github.com/jdhitsolutions/PSScriptTools
         <TypeName>PSPodcastInfo</TypeName>
       </ViewSelectedBy>
       <GroupBy>
-        <ScriptBlock>"$($PSStyle.Foreground.BrightYellow)$($PSStyle.FormatHyperLink($($_.Title),$($_.Link)))$($PSStyle.Reset) [Episode #{1}]" -f $_.Title,$_.episode,$_.Link</ScriptBlock>
+        <ScriptBlock>
+        "$($PSStyle.Foreground.BrightYellow)$($PSStyle.FormatHyperLink($($_.Title),$($_.Link)))$($PSStyle.Reset) [Episode #{1}]" -f $_.Title,$_.episode,$_.Link
+        </ScriptBlock>
         <Label>Show</Label>
       </GroupBy>
       <TableControl>
@@ -104,6 +106,51 @@ https://github.com/jdhitsolutions/PSScriptTools
           </listEntry>
         </listEntries>
       </ListControl>
+    </View>
+    <View>
+      <!--Created 04/13/2025 20:05:11 by PROSPERO\Jeff-->
+      <Name>list</Name>
+      <ViewSelectedBy>
+        <TypeName>PSPodcastInfo</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <!--Delete the AutoSize node if you want to use the defined widths.-->
+        <AutoSize />
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Episode</Label>
+            <Width>10</Width>
+            <Alignment>center</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Date</Label>
+            <Width>23</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Title</Label>
+            <Width>48</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Episode</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>$_.Date.ToShortDateString()</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>
+                  "$($PSStyle.Italic)$($PSStyle.Foreground.BrightYellow)$($PSStyle.FormatHyperLink($($_.Title),$($_.Link)))$($PSStyle.Reset)"
+                </ScriptBlock>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
     </View>
   </ViewDefinitions>
 </Configuration>

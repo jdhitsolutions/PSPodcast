@@ -60,10 +60,10 @@ Function Show-LatestPSPodcast {
         $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
         Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
         $paramHash = @{
-            Data   = $show
+            Data    = $show
             Header  = $title
-            Border = 'Rounded'
-            Color  = $BorderColor
+            Border  = 'Rounded'
+            Color   = $BorderColor
         }
 
         Format-SpectrePanel @paramHash

@@ -19,7 +19,7 @@ Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderC
 
 ## DESCRIPTION
 
-Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod.
+Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod. You should treat this command like a formatting command. You cannot pipe output from this command to another command like Save-PSPodcast.
 
 ## EXAMPLES
 

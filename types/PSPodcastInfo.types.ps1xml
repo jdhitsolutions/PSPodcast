@@ -3,10 +3,6 @@
 This file was created with New-PSPropertySet from the
 PSTypeExtensionTools module which you can install from
 the PowerShell Gallery.
-
-Use Update-TypeData to append this file in your PowerShell session.
-
-Created 04/12/2025 12:50:42
 -->
 <Types>
   <Type>
@@ -22,6 +18,24 @@ Created 04/12/2025 12:50:42
           <Name>ShowLinks</Name>
         </ReferencedProperties>
       </PropertySet>
+      <PropertySet>
+        <Name>list</Name>
+        <ReferencedProperties>
+          <Name>Episode</Name>
+          <Name>Date</Name>
+          <Name>Title</Name>
+        </ReferencedProperties>
+      </PropertySet>
+      <AliasProperty>
+        <Name>Online</Name>
+        <ReferencedMemberName>Link</ReferencedMemberName>
+      </AliasProperty>
+      <ScriptMethod>
+        <Name>DownloadShow</Name>
+        <Script>Param([string]$Path = $Home)
+          $file = Join-Path -Path $Path -ChildPath "PowerShellPodcast-$($this.Episode).mp3"
+          Invoke-WebRequest -Uri $this.DownloadLink -OutFile $file -errorAction Stop</Script>
+      </ScriptMethod>
     </Members>
   </Type>
 </Types>

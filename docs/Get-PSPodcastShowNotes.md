@@ -1,7 +1,7 @@
 ---
 external help file: PSPodcast-help.xml
 Module Name: PSPodcast
-online version:
+online version: https://jdhitsolutions.com/yourls/13ea3e
 schema: 2.0.0
 ---
 
@@ -21,6 +21,8 @@ Get-PSPodcastShowNotes [-PSPodcastInfo] <Object> [[-TitleColor] <String>] [[-Bor
 ## DESCRIPTION
 
 Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of ShowNotes.
+
+Even though the command has a verb of Get, you should treat this command like a formatting command. You cannot pipe output from this command to another command.
 
 ## EXAMPLES
 

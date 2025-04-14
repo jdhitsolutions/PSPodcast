@@ -6,10 +6,33 @@ ForEach-Object { . $_.FullName}
 #use the version value in module functions' verbose output
 $modName = ($MyInvocation.MyCommand).name.split(".")[0]
 $modVer = (Test-ModuleManifest $PSScriptRoot\$modName.psd1).Version
+
+#save the feed XML to a temp file and use this as the data source
+#for module commands.
+$rssFeed = 'https://feed.podbean.com/powershellpodcast/feed.xml'
+
+#Using .NET to support cross-platform
+$tmp = [System.IO.Path]::GetTempPath()
+#this will be module-scoped variable
+$tmpXml = Join-Path -Path $tmp -ChildPath 'feed.xml'
+
+#download the RSS feed if the XML temp file does not exist or is more than 24 hours old
+If ((-Not (Test-Path -path $tmpXml)) -OR ((Get-Date) - (Get-Item $tmpXml).LastWriteTime).TotalHours -gt 24) {
+    Try {
+        #This is faster than using Invoke-RestMethod
+        Invoke-WebRequest -Uri $rssFeed -OutFile $tmpXml -ErrorAction Stop
+    }
+    Catch {
+        Throw $_
+    }
+}
+
 #endregion
 
 #region type extensions
 
+# 13 April 2025 - These extensions are now in the types.ps1xml file
+<#
 Update-TypeData -MemberType ScriptMethod -TypeName 'PSPodcastInfo' -MemberName 'DownloadShow' -Value {
     Param([string]$Path = $Home)
     $file = Join-Path -Path $Path -ChildPath "PowerShellPodcast-$($this.Episode).mp3"
@@ -17,7 +40,7 @@ Update-TypeData -MemberType ScriptMethod -TypeName 'PSPodcastInfo' -MemberName '
 } -Force
 
 Update-TypeData -MemberType AliasProperty -TypeName 'PSPodcastInfo' -MemberName 'Online' -Value 'Link' -Force
-
+#>
 #endregion
 
 #add argument completers for these parameters

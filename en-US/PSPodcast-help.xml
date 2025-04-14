@@ -10,37 +10,173 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to get information about the most recent episodes of the PowerShell Podcast based on the podcast's RSS feed. The default is the 4 most recent episodes. You can get between 1 and 100 of the most recent episodes.</maml:para>
+      <maml:para>Use this command to get information about the most recent episodes of the PowerShell Podcast based on the podcast's RSS feed. The default is the 5 most recent episodes.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-PSPodcast</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Newest">
           <maml:name>Last</maml:name>
           <maml:description>
-            <maml:para>The number of most recent episodes to show. The default is 4. The maximum is 100.</maml:para>
+            <maml:para>The number of most recent episodes to show. The default is 5</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>4</dev:defaultValue>
+          <dev:defaultValue>5</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>All</maml:name>
+          <maml:description>
+            <maml:para>Show all released episodes. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Episode</maml:name>
+          <maml:description>
+            <maml:para>The episode number to show. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Query</maml:name>
+          <maml:description>
+            <maml:para>Enter a name or term to search for in the episode title or description. You will get better results with a case-sensitive query. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Newest">
         <maml:name>Last</maml:name>
         <maml:description>
-          <maml:para>The number of most recent episodes to show. The default is 4. The maximum is 100.</maml:para>
+          <maml:para>The number of most recent episodes to show. The default is 5</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>4</dev:defaultValue>
+        <dev:defaultValue>5</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>All</maml:name>
+        <maml:description>
+          <maml:para>Show all released episodes. This parameter was added in version 0.4.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Episode</maml:name>
+        <maml:description>
+          <maml:para>The episode number to show. This parameter was added in version 0.4.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Query</maml:name>
+        <maml:description>
+          <maml:para>Enter a name or term to search for in the episode title or description. You will get better results with a case-sensitive query. This parameter was added in version 0.4.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -141,6 +277,58 @@ ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
           <maml:para>The Links property is a property set. The variable $r holds the results of previously run Get-PSPodcast command.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcast -Episode 160
+
+   Show: MS Graph and Stepping into Public Speaking with Morten Kristensen
+[Episode #160]
+
+Date      Length   Description
+----      ------   -----------
+2/24/2025 00:33:49 In this episode of the PowerShell Podcast,we sit down with
+                   Morten Kristensen, an automation specialist and PowerShell
+                   enthusiast, to discuss his journey with PowerShell, his
+                   experience working with the Microsoft Graph API, and his
+                   recent leap into public speaking. Morten shares insights
+                   from his first-ever technical talk, the challenges of
+                   working with Graph API, and how he's navigating his
+                   professional growth.</dev:code>
+        <dev:remarks>
+          <maml:para>If you know the episode number, you can use the `-Episode` parameter to get a specific episode.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcast -query Entra | Format-List Date,Title,Online
+
+Date   : 11/11/2024 10:00:00 AM
+Title  : PowerShell, Microsoft Graph, and MVP Wisdom with Christian Ritter
+Online : https://powershellpodcast.podbean.com/e/powershell-microsoft-graph-and-
+         mvp-wisdom-with-christian-ritter/
+
+Date   : 7/8/2024 10:00:00 AM
+Title  : Behind the Scenes at PSConf.EU: Harm Veenstra’s Experience and Insights
+Online : https://powershellpodcast.podbean.com/e/behind-the-scenes-at-psconfeu-h
+         arm-veenstra-s-experience-and-insights/
+
+Date   : 4/29/2024 10:00:00 AM
+Title  : The PowerShell &amp; Global DevOps Summit 2024 Bar session 4
+Online : https://powershellpodcast.podbean.com/e/powershell-global-devops-summit
+         -2024-bar-session-4/
+
+Date   : 11/6/2023 10:00:00 AM
+Title  : Entra Insights and Merill Fernando’s Toolbox: Powering the Community
+Online : https://powershellpodcast.podbean.com/e/entra-insights-and-merrill-fern
+         ando-s-toolbox-powering-the-community/
+
+Date   : 2/20/2023 10:00:00 AM
+Title  : Learning by Doing with Don Jones
+Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jones/</dev:code>
+        <dev:remarks>
+          <maml:para>You can find podcast episodes with a given keyword or phrase using the `-Query` parameter. This will search the title and description of each episode. The podcast XML feed does not have a specific entry for the guest, so this is the best way to find episodes with a specific guest.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
@@ -159,6 +347,70 @@ ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-PSPodcastModule</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>PSPodcastModule</command:noun>
+      <maml:description>
+        <maml:para>Get the module information for the PSPodcast module.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Use this simple command to display module command information. The output is formatted as a Spectre console table with clickable links to the project's GitHub repository and online help.</maml:para>
+      <maml:para>This command was added in v0.4.0.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcastModule</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcastModule</dev:code>
+        <dev:remarks>
+          <maml:para>The output is an ANSI formatted table.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/df3a10</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-Command</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-PSPodcastShowNotes</command:name>
       <command:verb>Get</command:verb>
       <command:noun>PSPodcastShowNotes</command:noun>
@@ -168,6 +420,7 @@ ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
     </command:details>
     <maml:description>
       <maml:para>Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of ShowNotes.</maml:para>
+      <maml:para>Even though the command has a verb of Get, you should treat this command like a formatting command. You cannot pipe output from this command to another command.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -283,6 +536,10 @@ ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/13ea3e</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSPodcast</maml:linkText>
         <maml:uri></maml:uri>
@@ -453,7 +710,7 @@ Mode                 LastWriteTime         Length Name
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod.</maml:para>
+      <maml:para>Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod. You should treat this command like a formatting command. You cannot pipe output from this command to another command like Save-PSPodcast.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

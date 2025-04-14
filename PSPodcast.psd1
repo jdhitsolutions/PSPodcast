@@ -3,7 +3,7 @@
 #
 @{
     RootModule           = 'PSPodcast.psm1'
-    ModuleVersion        = '0.3.0'
+    ModuleVersion        = '0.4.0'
     CompatiblePSEditions = 'Core'
     GUID                 = '3618f898-6fe7-4d94-82e3-23926498ff6d'
     Author               = 'Jeff Hicks'
@@ -13,10 +13,10 @@
     PowerShellVersion    = '7.4'
     TypesToProcess       = @('types/PSPodcastInfo.types.ps1xml')
     FormatsToProcess     = @('formats/PSPodcastInfo.format.ps1xml')
-    FunctionsToExport    = 'Get-PSPodcast', 'Show-LatestPSPodcast','Save-PSPodcast','Get-PSPodcastShowNotes'
+    FunctionsToExport    = 'Get-PSPodcast', 'Show-LatestPSPodcast','Save-PSPodcast','Get-PSPodcastShowNotes','Get-PSPodcastModule'
     CmdletsToExport      = @()
     VariablesToExport    = @()
-    AliasesToExport      = 'pspod','ShowNotes'
+    AliasesToExport      = @('gpod','pspod','ShowNotes')
     PrivateData          = @{
         PSData = @{
             Tags                       = @('podcast', 'powershell', 'pdq')
