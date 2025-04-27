@@ -4,13 +4,27 @@ Function Show-LatestPSPodcast {
     [OutputType('Spectre.Console.Panel')]
     Param(
         [Parameter(HelpMessage = "The color of the title text.")]
+        [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
+        ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
         [string]$TitleColor = "SpringGreen2",
+
         [Parameter(HelpMessage = "The color of the link text.")]
+        [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
+        ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
+
         [string]$LinkColor = "DeepSkyBlue2",
+
         [Parameter(HelpMessage = "The color of the border.")]
+        [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
+        ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
         [string]$BorderColor = "GreenYellow",
+
         [Parameter(HelpMessage = "Display the podcast information once every 24 hours. Use this when running this command in your profile script.")]
-        [switch]$Profile
+        [switch]$Profile,
+
+        [Parameter(HelpMessage = "The number of most recent episodes to display.")]
+        [ValidateNotNullOrEmpty()]
+        [int]$Last = 1
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -36,44 +50,47 @@ Function Show-LatestPSPodcast {
     }
 
     Try {
-        $r = Get-PSPodcast -Last 1 -ErrorAction Stop
+         Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieve the last $last episode(s)"
+        $recent = Get-PSPodcast -Last $Last -ErrorAction Stop
     }
     Catch {
         #this is a catch all for any errors in the Get-PSPodcast function
-        Write-Error "Failed to retrieve the latest episode of the PowerShell Podcast. $($_.Exception.Message)"
-         Write-Verbose "[$((Get-Date).TimeOfDay)] Aborting the command."
+        Write-Error "Failed to retrieve the latest episode(s) of The PowerShell Podcast. $($_.Exception.Message)"
+        Write-Verbose "[$((Get-Date).TimeOfDay)] Aborting the command."
         return
     }
 
-    if ($r) {
-    Write-Verbose "[$((Get-Date).TimeOfDay)] Processing episode $($r.episode)"
-    #Define the text to display in the panel
-    $show = @"
+    if ($recent) {
+        foreach ($r in $recent) {
+            Write-Verbose "[$((Get-Date).TimeOfDay)] Processing episode $($r.episode)"
+
+            #Define the text to display in the panel
+            $show = @"
 [bold $TitleColor]$($r.title) :microphone: $($r.Length)[/]
 
 [italic]$($r.description)[/]
 
-[underline $LinkColor]$($r.link)[/]
+[underline $LinkColor link]$($r.Link)[/]
 "@
 
-        #define the panel title
-        $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
-        Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
-        $paramHash = @{
-            Data    = $show
-            Header  = $title
-            Border  = 'Rounded'
-            Color   = $BorderColor
-        }
+            #define the panel title
+            $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
+            Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
+            $paramHash = @{
+                Data    = $show
+                Header  = $title
+                Border  = 'Rounded'
+                Color   = $BorderColor
+            }
 
-        Format-SpectrePanel @paramHash
+            Format-SpectrePanel @paramHash | Out-SpectreHost
 
-        if ($Profile) {
-        Write-Verbose "[$((Get-Date).TimeOfDay)] Updating the flag file"
-            $r | ConvertTo-JSON | Out-File -FilePath $profileFlag -Force -Encoding utf8
-        }
+            if ($Profile) {
+            Write-Verbose "[$((Get-Date).TimeOfDay)] Updating the flag file"
+                $r | ConvertTo-JSON | Out-File -FilePath $profileFlag -Force -Encoding utf8
+            }
     } #if podcast data
-
+    }
     Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 } #close function
 

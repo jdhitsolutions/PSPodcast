@@ -32,7 +32,7 @@ Even though the command has a verb of Get, you should treat this command like a 
 PS C:\> $r[3] | Get-PSPodcastShowNotes
 ```
 
-Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre console panel. You can adjust the colors using the command parameters.
+Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.
 
 ## PARAMETERS
 

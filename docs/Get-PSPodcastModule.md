@@ -19,7 +19,7 @@ Get-PSPodcastModule [<CommonParameters>]
 
 ## DESCRIPTION
 
-Use this simple command to display module command information. The output is formatted as a Spectre console table with clickable links to the project's GitHub repository and online help.
+Use this simple command to display module command information. The output is formatted as a Spectre Console table with clickable links to the project's GitHub repository and online help.
 
 This command was added in v0.4.0.
 
@@ -31,7 +31,7 @@ This command was added in v0.4.0.
 PS C:\> Get-PSPodcastModule
 ```
 
-The output is an ANSI formatted table.
+The output is an ANSI formatted table using the pswhSpectreConsole module. The display should have clickable links. Clicking the title should open the module's GitHub repository. The command links should open the online help for the command.
 
 ## PARAMETERS
 
@@ -45,7 +45,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### String
+### String formatted as a Spectre console table.
 
 ## NOTES
 

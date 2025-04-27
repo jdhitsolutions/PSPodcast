@@ -35,24 +35,27 @@ Function Get-PSPodcast {
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
-    Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
-
-    #download the RSS feed if the XML temp file does not exist or is more than 24 hours old
-    If ($Force -OR (-Not (Test-Path -Path $tmpXml)) -OR ((Get-Date) - (Get-Item $tmpXml).LastWriteTime).TotalHours -gt 24) {
-        Write-Verbose "[$((Get-Date).TimeOfDay)] Downloading the podcast RSS feed from $rssFeed"
-        Try {
-            Write-Verbose "[$((Get-Date).TimeOfDay)] Saving the RSS feed to $tmpXml"
-            #This is faster than using Invoke-RestMethod
-            Invoke-WebRequest -Uri $rssFeed -OutFile $tmpXml -ErrorAction Stop
-        }
-        Catch {
-            Throw $_
-        }
+    if ($MyInvocation.CommandOrigin -eq 'Runspace') {
+        #Hide this metadata when the command is called from another command
+        Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
     }
 
+    #download the RSS feed if the XML temp file does not exist or is more than 24 hours old
+    # 27 April 2025 JH - moved this code to a private helper function
+    _getFeed -Force:$Force
     if (Test-Path $tmpXml) {
-        [xml]$feed = Get-Content -Path $tmpXml
-        Write-Information -MessageData $feed -tag raw
+        Try {
+            #validate the file is valid XML
+            [xml]$feed = Get-Content -Path $tmpXml -ErrorAction Stop
+            Write-Information -MessageData $feed -tag raw
+            #26 April 2025 JH show the data of the tmpXML file in the Verbose message
+            $dt = (Get-Item $tmpXml).LastWriteTime
+            Write-Verbose "[$((Get-Date).TimeOfDay)] Using data from $tmpXml [$dt]"
+        }
+        Catch {
+            Write-Error "$tmpXML is an invalid XML file. You might try deleting the file and trying again. $($_.Exception.Message)"
+        }
+        if ($feed.rss) {
         Switch ($PSCmdlet.ParameterSetName) {
             'query' {
                 $ns = @{
@@ -68,8 +71,8 @@ Function Get-PSPodcast {
             }
             'last' {
                 #get the last $Last episodes
+                Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieving the last $Last episodes"
                 $data = $feed.rss.channel.item | Select-Object -First $Last
-                Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieving the last $Last episodes from the RSS feed $tmpXml"
             }
             'episode' {
                  Write-Verbose "[$((Get-Date).TimeOfDay)] Searching for episode $Episode"
@@ -134,6 +137,7 @@ Function Get-PSPodcast {
         else {
             Write-Warning 'No matching episode(s) found.'
         }
+    } #if valid feed
     } #if Test-Path
     else {
         Write-Warning "The RSS feed $rssFeed is not available. Please check your internet connection."

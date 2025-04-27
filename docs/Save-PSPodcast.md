@@ -21,6 +21,8 @@ Save-PSPodcast [[-Path] <String>] -PSPodcastInfo <Object> [-Passthru] [<CommonPa
 
 Use this command to download an MP3 file from a podcast episode. You will need to pass a result from Get-PSPodcast to download that episode. The default location is $HOME. The file name will be "PowerShellPodcast-<episode number>.mp3".
 
+This command has an alias of savepod.
+
 ## EXAMPLES
 
 ### Example 1
@@ -42,7 +44,7 @@ Save the most recent podcast episode to the D:\ drive.
 
 ### -PSPodcastInfo
 
-The PSPodcastInfo object
+A PSPodcastInfo object.
 
 ```yaml
 Type: Object

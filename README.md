@@ -2,20 +2,21 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSPodcast.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSPodcast/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSPodcast.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSPodcast/)
 
-This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsole](https://github.com/ShaunLawrie/PwshSpectreConsole) module. This requirement will be installed automatically if you don't have it already.
+![The PowerShell Podcast logo](images/podcast-logo-small.jpg)
+<hr/>
+This is a relatively simple module designed to get and display information about recent episodes of [The PowerShell Podcast](https://powershellpodcast.podbean.com/). The module commands are not written with automation or scaling in mind. They are designed for interactive use to display podcast information in a visually engaging way. For best results, run the commands in a terminal that supports ANSI colors and formatting, such as Windows Terminal.
+
+This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsole](https://github.com/ShaunLawrie/PwshSpectreConsole) module. This requirement will be installed automatically if you don't have it already. Install the module from the PowerShell Gallery.
 
 ```powershell
 Install-PSResource PSPodcast
 ```
 
-This is a relatively simple module designed to get and display information about recent episodes of [The PowerShell Podcast](https://powershellpodcast.podbean.com/). The module commands are not written with automation or scaling in mind. They are designed for interactive use to display podcast information in a visually engaging way. For best results, run the commands in a terminal that supports ANSI colors and formatting, such as Windows Terminal.
-
 Run `Get-PSPodcastModule` to see the module commands and their descriptions. The output is an ANSI formatted table with clickable links to the project's GitHub repository and online help.
 
 ![Get-PSPodcastModule](images/get-pspodcastmodule.png)
 
-
-> *This module is not affiliated with The PowerShell Podcast or PDQ.com.*
+> *__This module and its primary author are not affiliated with The PowerShell Podcast or PDQ.com__.*
 
 ## Module Import
 
@@ -167,6 +168,8 @@ Date      Length   Description
                    also recount what most be the most brutal display of
                    athleticism, curling.
 ```
+
+
 
 ### Format and Type Extensions
 
@@ -334,10 +337,18 @@ The `Show-LatestPSPodcast` function was created with profile integration in mind
 If you want to include the command in your profile, it is recommended you include the `-Profile` parameter.
 
 ```powershell
-pspod -profile
+Try {
+    Import-Module PSPodcast -force -ErrorAction Stop
+    pspod -profile
+}
+Catch {
+    Write-Warning $_.Exception.Message
+}
 ```
 
-This parameter will check for the existence of a flag file stored in `$HOME`.
+> *Importing the module explicitly should catch any errors getting the XML feed file.*
+
+The `-profile` parameter will check for the existence of a flag file stored in `$HOME`.
 
 ```powershell
 PS C:\> Get-Item $HOME\pspod.flag
@@ -353,7 +364,13 @@ If the flag file exists, __and__ you use the `-Profile` parameter, the command w
 
 Of course, you can force display by omitting the `-Profile` parameter.
 
-If you uninstall the module you will need to manually delete the flag file.
+__If you uninstall the module you will need to manually delete the flag file.__
+
+## [Get-AboutPSPodcast](docs/Get-AboutPSPodcast.md)
+
+This is a simple command to display summary information about The PowerShell Podcast. This information is pulled from the podcast's RSS feed. The output is a formatted Spectre console panel with clickable links.
+
+![Get-AboutPSPodcast](images/get-aboutpspodcast.png)
 
 ## Road Map
 

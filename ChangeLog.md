@@ -4,6 +4,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-04-27
+
+### Added
+
+- Added ValidateScript() attribute to parameters that accept SpectreConsole color values
+- Added command `Get-AboutPSPodcast`.
+- Added alias `savepod` for `Save-PSPodcast`.
+
+### Changed
+
+- Moved code to test and download the RSS file to a private helper function.
+- Moved private functions to a separate file.
+- Modified `Show-LatestPSPodcast` to let the user specify the number of recent podcast episodes. The default is 1.
+- Updated module and `Get-PSPodcast` to test and verify the website and validity of the XML feed file. This should hopefully fix the problem with [Issue #1](https://github.com/jdhitsolutions/PSPodcast/issues/1).
+- Revised exception message in `Get-PSPodcast` with additional information.
+- Updated `README`.
+
+### Fixed
+
+- Fixed a bug in `Get-PSPodcastModule` that was including internal and private functions.
+
 ## [0.4.0] - 2025-04-14
 
 ### Added
@@ -63,6 +84,7 @@ This is an unpublished version.
 
 - Added initial commands and aliases.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.4.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..HEAD
+[0.5.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.4.0..v0.5.0
 [0.4.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.2.0..v0.3.0

@@ -2,6 +2,137 @@
 <helpItems schema="maml" xmlns="http://msh">
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-AboutPSPodcast</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>AboutPSPodcast</command:noun>
+      <maml:description>
+        <maml:para>Display podcast About information.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This is a simple function to display information about The PowerShell Podcast.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-AboutPSPodcast</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>TextColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the description text. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>BorderColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Gold1</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Force downloading the RSS feed.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>BorderColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the border. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Gold1</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>TextColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the description text. Use a Spectre.Console color name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Force downloading the RSS feed.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String formatted as a Spectre.Console Panel</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-AboutPSPodcast</dev:code>
+        <dev:remarks>
+          <maml:para>The default output should have clickable links.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/7129c6</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-PSPodcast</command:name>
       <command:verb>Get</command:verb>
       <command:noun>PSPodcast</command:noun>
@@ -377,7 +508,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>String formatted as a Spectre console table.</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -394,7 +525,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-PSPodcastModule</dev:code>
         <dev:remarks>
-          <maml:para>The output is an ANSI formatted table.</maml:para>
+          <maml:para>The output is an ANSI formatted table using the pswhSpectreConsole module. The display should have clickable links. Clicking the title should open the module's GitHub repository. The command links should open the online help for the command.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -561,6 +692,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:details>
     <maml:description>
       <maml:para>Use this command to download an MP3 file from a podcast episode. You will need to pass a result from Get-PSPodcast to download that episode. The default location is $HOME. The file name will be "PowerShellPodcast-&lt;episode number&gt;.mp3".</maml:para>
+      <maml:para>This command has an alias of savepod.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -580,7 +712,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
           <maml:name>PSPodcastInfo</maml:name>
           <maml:description>
-            <maml:para>The PSPodcastInfo object</maml:para>
+            <maml:para>A PSPodcastInfo object.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
@@ -606,7 +738,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
         <maml:name>PSPodcastInfo</maml:name>
         <maml:description>
-          <maml:para>The PSPodcastInfo object</maml:para>
+          <maml:para>A PSPodcastInfo object.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
@@ -762,6 +894,18 @@ Mode                 LastWriteTime         Length Name
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Last</maml:name>
+          <maml:description>
+            <maml:para>The number of most recent episodes to display.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>1</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -812,6 +956,18 @@ Mode                 LastWriteTime         Length Name
           <maml:uri />
         </dev:type>
         <dev:defaultValue>SpringGreen2</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Last</maml:name>
+        <maml:description>
+          <maml:para>The number of most recent episodes to display.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>1</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>

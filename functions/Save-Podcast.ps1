@@ -1,5 +1,7 @@
 Function Save-PSPodcast {
     [CmdletBinding()]
+    [alias("savepod")]
+    [OutputType('None','System.IO.FileInfo')]
     Param(
         [Parameter(
            Position = 0,
@@ -12,7 +14,7 @@ Function Save-PSPodcast {
         [Parameter(
             Mandatory,
             ValueFromPipeline,
-            HelpMessage = 'The PSPodcastInfo object'
+            HelpMessage = 'A PSPodcastInfo object'
         )]
         [ValidateNotNullOrEmpty()]
         [Object]$PSPodcastInfo,

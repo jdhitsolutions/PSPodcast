@@ -1,6 +1,6 @@
 ---
 external help file: PSPodcast-help.xml
-Module Name: pspodcast
+Module Name: PSPodcast
 online version: https://jdhitsolutions.com/yourls/dc7824
 schema: 2.0.0
 ---
@@ -14,7 +14,7 @@ Display the most recent PowerShell Podcast episode.
 ## SYNTAX
 
 ```yaml
-Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [<CommonParameters>]
+Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [-Last <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,22 @@ Aliases:
 Required: False
 Position: 0
 Default value: SpringGreen2
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Last
+
+The number of most recent episodes to display.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 1
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -11,9 +11,15 @@ Function Get-PSPodcastShowNotes {
         )]
         [ValidateNotNullOrEmpty()]
         [Object]$PSPodcastInfo,
+
         [Parameter(HelpMessage = "The color of the title text.")]
+        [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
+        ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
         [string]$TitleColor = "Yellow",
+
         [Parameter(HelpMessage = "The color of the border.")]
+        [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
+        ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
         [string]$BorderColor = "GreenYellow"
     )
     Begin {

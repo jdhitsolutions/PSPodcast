@@ -5,9 +5,15 @@ Function Get-PSPodcastModule {
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
     Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Using pwshSpectreConsole version $((Get-Module pwshSpectreConsole).version)"
 
-    Write-Verbose "[$((Get-Date).TimeOfDay)] Getting module commands"
-    $cmds = Get-Command -module PSPodcast
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Getting PSPodcast module commands"
+
+    # 26 April 2025 Modified to use Get-Module. Get-Command appears to be running in the module
+    # scope and includes private, non-exported functions.
+    #$cmds = Get-Command -module PSPodcast
+    $cmds = (Get-Module -Name PSPodcast).ExportedFunctions.Keys | Get-Command
+
     Write-Verbose "[$((Get-Date).TimeOfDay)] Found $($cmds.count) commands in the module"
 
     $title = "[link=https://https://github.com/jdhitsolutions/PSPodcast]PSPodcast [[v$($cmds[0].version)]][/]"
