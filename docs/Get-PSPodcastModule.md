@@ -45,7 +45,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### String formatted as a Spectre console table.
+### String formatted as a Spectre console table
 
 ## NOTES
 

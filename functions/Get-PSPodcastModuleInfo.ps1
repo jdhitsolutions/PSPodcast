@@ -16,7 +16,7 @@ Function Get-PSPodcastModule {
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Found $($cmds.count) commands in the module"
 
-    $title = "[link=https://https://github.com/jdhitsolutions/PSPodcast]PSPodcast [[v$($cmds[0].version)]][/]"
+    $title = "`n[link=https://github.com/jdhitsolutions/PSPodcast]PSPodcast [[v$($cmds[0].version)]][/]"
 
     $cmds | Select-Object -property @{Name="Command";
     Expression = {
@@ -29,7 +29,7 @@ Function Get-PSPodcastModule {
     }},
     @{Name="Alias";Expression={
         $alias = (Get-Alias -Definition $_.Name -ErrorAction SilentlyContinue).Name
-        "[italic]$alias[/]"
+        "[Gold1 italic]$alias[/]"
     }},
     @{Name="Synopsis";Expression = { (Get-Help $_.name).Synopsis}} |
     Format-SpectreTable -Title $Title -Color gold1 -HeaderColor SpringGreen2 -AllowMarkup -wrap |

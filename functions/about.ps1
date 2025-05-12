@@ -36,7 +36,7 @@ Function Get-AboutPSPodcast {
     $title = "[link=$homeLink]The PowerShell Podcast[/]"
     $totalEpisodes = $feed.rss.channel.item.count
 
-    $data = @"
+<#     $data = @"
 
 [italic $TextColor]$description[/]
 Hosted by     : [link=https://andrewpla.tech/]Andrew Pla[/]
@@ -44,13 +44,27 @@ Last updated  : $($lastUpdate.ToLongDateString())
 Total Episodes: $totalEpisodes
 Sponsored by  : [link=https://pdq.com]PDQ.com[/]
 
+"@ #>
+
+# 12 May 2025 Revised to display an image of Andrew.
+    $andrew = Get-SpectreImage $PSScriptRoot\..\images\andrew-pla.jpg -MaxWidth 12
+    $R1 = "[italic $TextColor]$description[/]"
+$info = @"
+Hosted by     : [$BorderColor link=https://andrewpla.tech/]Andrew Pla[/]
+Last updated  : $($lastUpdate.ToLongDateString())
+Total episodes: $totalEpisodes
+Sponsored by  : [link=https://pdq.com]PDQ.com[/]
+
 "@
+    $R2 = @($info,$andrew) | Format-SpectreColumns -Padding 5  | Format-SpectreRows
 
-#insert a return after the prompt
-write-Host "`r"
-@($img,$data) | Format-SpectreColumns| Format-SpectrePanel -Title $title -Color $BorderColor | Out-SpectreHost
+    $data = @($R1,$R2) | Format-SpectreColumns
 
- Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
+    #insert a return after the prompt
+    Write-Host "`r"
+    @($img,$data) | Format-SpectreColumns | Format-SpectrePanel -Title $title -Color $BorderColor | Out-SpectreHost
+
+    Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 }
 
 <# --> [link=https://www.linkedin.com/in/andrewplatech/]Find Andrew on LinkedIn[/]

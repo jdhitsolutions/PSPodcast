@@ -28,7 +28,7 @@ This command has an alias of savepod.
 ### Example 1
 
 ```powershell
-PS C:\> $r = Get-PSPodcast -last 5
+PS C:\> $r = Get-PSPodcast -Last 5
 PS C:\> $r[0] | Save-PSPodcast -Path d:\ -Passthru
 
     Directory: D:\

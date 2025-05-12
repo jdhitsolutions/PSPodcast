@@ -486,7 +486,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this simple command to display module command information. The output is formatted as a Spectre console table with clickable links to the project's GitHub repository and online help.</maml:para>
+      <maml:para>Use this simple command to display module command information. The output is formatted as a Spectre Console table with clickable links to the project's GitHub repository and online help.</maml:para>
       <maml:para>This command was added in v0.4.0.</maml:para>
     </maml:description>
     <command:syntax>
@@ -508,7 +508,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>String formatted as a Spectre console table.</maml:name>
+          <maml:name>String formatted as a Spectre console table</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -662,7 +662,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $r[3] | Get-PSPodcastShowNotes</dev:code>
         <dev:remarks>
-          <maml:para>Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre console panel. You can adjust the colors using the command parameters.</maml:para>
+          <maml:para>Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -808,7 +808,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $r = Get-PSPodcast -last 5
+        <dev:code>PS C:\&gt; $r = Get-PSPodcast -Last 5
 PS C:\&gt; $r[0] | Save-PSPodcast -Path d:\ -Passthru
 
     Directory: D:\
@@ -843,6 +843,7 @@ Mode                 LastWriteTime         Length Name
     </command:details>
     <maml:description>
       <maml:para>Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod. You should treat this command like a formatting command. You cannot pipe output from this command to another command like Save-PSPodcast.</maml:para>
+      <maml:para>This command was written with the idea that you would use it in your PowerShell profile script. If you think you don't have the most current information, run Get-PSPodcast -Last 1 -Force to force downloading the latest episode information.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

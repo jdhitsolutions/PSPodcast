@@ -12,6 +12,8 @@ This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsol
 Install-PSResource PSPodcast
 ```
 
+For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module. Note that the module may not properly render images in VSCode.
+
 Run `Get-PSPodcastModule` to see the module commands and their descriptions. The output is an ANSI formatted table with clickable links to the project's GitHub repository and online help.
 
 ![Get-PSPodcastModule](images/get-pspodcastmodule.png)
@@ -30,7 +32,7 @@ The `Get-PSPodcast` function will retrieve episode information from The PowerShe
 
 The default output is formatted as a table using `$PSStyle`. The show title should be a clickable link. Currently, there is no way to customize the formatting. However, you can use `Format-List` to see all properties unformatted.
 
-```cmd
+```powershell
 PS C:\> Get-PSPodcast | Format-List
 
 Title       : PowerShell Summit Bar Sessions 2025 - David R
@@ -106,7 +108,7 @@ Year Shows TotalTime
 
 If you know the episode number, you can use the `-Episode` parameter to get a specific episode.
 
-```cmd
+```powershell
 PS C:\> Get-PSPodcast -Episode 160
 
    Show: MS Graph and Stepping into Public Speaking with Morten Kristensen
@@ -128,7 +130,7 @@ Date      Length   Description
 
 Finally, you can find podcast episodes with a given keyword or phrase using the `-Query` parameter. This will search the title and description of each episode. The podcast XML feed does not have a specific entry for the guest, so this is the best way to find episodes with a specific guest.
 
-```cmd
+```powershell
 PS C:\> Get-PSPodcast -query "frank lesniak"
 
    Show: PowerShell Summit Bar Sessions 2025 - Frank Lesniak [Episode #168]
@@ -203,7 +205,7 @@ DownloadShow ScriptMethod  System.Object DownloadShow();
 
 The property sets are designed to quickly display relevant information.
 
-```cmd
+```powershell
 PS C:\> Get-PSPodcast -Episode 96 | Select-Object links
 
 Title     : Code in Action: Embracing Hands-On Learning with Jeff Hicks
@@ -267,7 +269,7 @@ Format-SpectreTable -Title $show.Title -Data @($show.description,"`n",$show.onli
 
 Once you have an episode object from `Get-PSPodcast`, you can use the `Save-PSPodcast` function to download the MP3 file. The default location is `$HOME`. You can specify a different path using the `-Path` parameter.
 
-```cmd
+```powershell
 PS C:\> $r = Get-PSPodcast -last 5
 PS C:\> $r[0] | Save-PSPodcast -Path d:\ -Passthru
 
@@ -284,7 +286,7 @@ The file name uses the format `PowerShellPodcast-<episode number>.mp3`.
 
 The `PSPodcastInfo` object includes a number of properties that point to online links. The object has a property set called `Links` which makes it easy to see all of them at once.
 
-```cmd
+```powershell
 PS C:\> $r[5] | Select Links
 
 Title     : How to Build an IT Career from the Ground Up with Kevin Apolinario
@@ -371,6 +373,91 @@ __If you uninstall the module you will need to manually delete the flag file.__
 This is a simple command to display summary information about The PowerShell Podcast. This information is pulled from the podcast's RSS feed. The output is a formatted Spectre console panel with clickable links.
 
 ![Get-AboutPSPodcast](images/get-aboutpspodcast.png)
+
+## Module Features
+
+This module uses PowerShell more as a presentation interface than as a management tool. In addition to the obvious formatting features from the pwshSpectreConsole module, the module has a few other features you might find useful.
+
+Module commands are written with verbose output.
+
+![Verbose output](images/verbose-sample.png)
+
+To aid in troubleshooting, some commands also support the information stream and will write additional information to the information stream.
+
+```powershell
+PS C:\> $l = Get-PSPodcast -Last 1 -InformationVariable iv
+PS C:\> $iv | Select-Object *
+
+MessageData     : #document
+Source          : C:\scripts\PSPodcast\functions\Get-PSPodcast.ps1
+TimeGenerated   : 5/12/2025 11:16:52 AM
+Tags            : {raw}
+User            : PROSPERO\Jeff
+Computer        : Prospero
+ProcessId       : 31156
+NativeThreadId  : 31352
+ManagedThreadId : 18
+
+MessageData     : item
+Source          : C:\scripts\PSPodcast\functions\Get-PSPodcast.ps1
+TimeGenerated   : 5/12/2025 11:16:52 AM
+Tags            : {raw}
+User            : PROSPERO\Jeff
+Computer        : Prospero
+ProcessId       : 31156
+NativeThreadId  : 31352
+ManagedThreadId : 18
+```
+
+I use this to aid in development. You might want to use it for troubleshooting or your own development should you for this module.
+
+```powershell
+PS C:\> $iv[0].MessageData
+
+xml                            #comment                  rss
+---                            --------                  ---
+version="1.0" encoding="UTF-8"  generator="podbean/5.5"  rss
+
+PS C:\> $iv[0].messageData.rss.channel
+
+title           : The PowerShell Podcast
+link            : {atom:link, https://powershellpodcast.podbean.com}
+description     : The PowerShell Podcast highlights what makes PowerShell so great, the community. Each week we want
+                  to highlight people, blogs, videos, and modules that have gone into making PowerShell so great.
+pubDate         : Mon, 12 May 2025 08:00:00 -0600
+generator       : https://podbean.com/?v=5.5
+language        : en
+countryOfOrigin : us
+copyright       : Copyright 2022 All rights reserved.
+category        : {Technology, itunes:category}
+ttl             : 1440
+type            : episodic
+summary         : The PowerShell Podcast highlights what makes PowerShell so great, the community. Each week we want
+                  to highlight people, blogs, videos, and Galleries that have gone into making PowerShell so great.
+author          : PDQ.com
+owner           : owner
+block           : No
+explicit        : false
+image           : {itunes:image, image}
+
+PS C:\> $iv[1].MessageData
+
+title       : {PowerShell, Security, and the Path to Mastery., PowerShell, Security, and the Path to Mastery.}
+link        : https://powershellpodcast.podbean.com/e/powershell-security-and-the-path-to-mastery/
+comments    : https://powershellpodcast.podbean.com/e/powershell-security-and-the-path-to-mastery/#comments
+pubDate     : Mon, 12 May 2025 08:00:00 -0600
+guid        : guid
+description : description
+encoded     : encoded
+enclosure   : enclosure
+summary     : summary
+author      : PDQ.com
+explicit    : false
+block       : No
+duration    : 01:02:09
+episode     : 174
+episodeType : full
+```
 
 ## Road Map
 

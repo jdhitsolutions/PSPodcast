@@ -4,6 +4,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.6.0] - 2025-05-12
+
+### Changed
+
+- Minor help revisions.
+- Updated `README.md`.
+- Updated `Get-AboutPSPodcast` to include an image of Andrew Pla.
+- Updated `Get-PSPodcastModule` to display aliases in the same color as the box.
+
+### Fixed
+
+- Fixed incorrect link to module repository in `Get-PSPodcastModule`.
+
 ## [0.5.0] - 2025-04-27
 
 ### Added
@@ -84,7 +97,8 @@ This is an unpublished version.
 
 - Added initial commands and aliases.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.6.0..HEAD
+[0.6.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..v0.6.0
 [0.5.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.4.0..v0.5.0
 [0.4.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.2.0..v0.3.0

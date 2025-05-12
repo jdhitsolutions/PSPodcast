@@ -21,6 +21,8 @@ Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderC
 
 Use this command to display the most recent episode of the PowerShell Podcast. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of pspod. You should treat this command like a formatting command. You cannot pipe output from this command to another command like Save-PSPodcast.
 
+This command was written with the idea that you would use it in your PowerShell profile script. If you think you don't have the most current information, run Get-PSPodcast -Last 1 -Force to force downloading the latest episode information.
+
 ## EXAMPLES
 
 ### Example 1

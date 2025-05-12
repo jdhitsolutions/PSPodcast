@@ -3,7 +3,7 @@
 #
 @{
     RootModule           = 'PSPodcast.psm1'
-    ModuleVersion        = '0.5.0'
+    ModuleVersion        = '0.6.0'
     CompatiblePSEditions = 'Core'
     GUID                 = '3618f898-6fe7-4d94-82e3-23926498ff6d'
     Author               = 'Jeff Hicks'
@@ -23,14 +23,33 @@
     )
     CmdletsToExport      = @()
     VariablesToExport    = @()
-    AliasesToExport      = @('gpod','pspod','ShowNotes')
+    AliasesToExport      = @('gpod', 'pspod', 'ShowNotes')
+    RequiredModules      = @(
+        @{ ModuleName = 'pwshSpectreConsole'; ModuleVersion = '2.3.0' }
+    )
     PrivateData          = @{
         PSData = @{
             Tags                       = @('podcast', 'powershell', 'pdq')
             LicenseUri                 = 'https://github.com/jdhitsolutions/PSPodcast/blob/main/LICENSE.txt'
             ProjectUri                 = 'https://github.com/jdhitsolutions/PSPodcast'
             # IconUri = ''
-            # ReleaseNotes = ''
+            ReleaseNotes = @"
+# PSPodcast Changelog
+
+## v0.6.0 - 2025-05-12 11:22:44
+
+### Changed
+
+- Minor help revisions.
+- Updated `README.md`.
+- Updated `Get-AboutPSPodcast` to include an image of Andrew Pla.
+- Updated `Get-PSPodcastModule` to display aliases in the same color as the box.
+
+### Fixed
+
+- Fixed incorrect link to module repository in `Get-PSPodcastModule`.
+
+"@
             ExternalModuleDependencies = @('pwshSpectreConsole')
         } # End of PSData hashtable
     } # End of PrivateData hashtable
