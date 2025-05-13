@@ -4,6 +4,7 @@
 
 ![The PowerShell Podcast logo](images/podcast-logo-small.jpg)
 <hr/>
+
 This is a relatively simple module designed to get and display information about recent episodes of [The PowerShell Podcast](https://powershellpodcast.podbean.com/). The module commands are not written with automation or scaling in mind. They are designed for interactive use to display podcast information in a visually engaging way. For best results, run the commands in a terminal that supports ANSI colors and formatting, such as Windows Terminal.
 
 This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsole](https://github.com/ShaunLawrie/PwshSpectreConsole) module. This requirement will be installed automatically if you don't have it already. Install the module from the PowerShell Gallery.
@@ -12,7 +13,9 @@ This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsol
 Install-PSResource PSPodcast
 ```
 
-For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module. Note that the module may not properly render images in VSCode.
+For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module.
+
+> *The module may not properly render images in VSCode.*
 
 Run `Get-PSPodcastModule` to see the module commands and their descriptions. The output is an ANSI formatted table with clickable links to the project's GitHub repository and online help.
 
@@ -22,7 +25,11 @@ Run `Get-PSPodcastModule` to see the module commands and their descriptions. The
 
 ## Module Import
 
-In order to improve performance of module commands, when the module is imported, the RSS feed XML file will be downloaded and saved to the TEMP folder. When you run `Get-PSPodcast`, the function will use this file instead of downloading the XML file again. However, if the file has not been found or is older than 24 hours, the XML file will be downloaded again.
+In order to improve performance of module commands, when the module is imported, the RSS feed XML file will be downloaded and saved to the TEMP folder. When you run `Get-PSPodcast`, the function will use this file instead of downloading the XML file again. However, if the file has not been found or is older than 24 hours, the XML file will be downloaded again. You can force the XML file to be downloaded again by running:
+
+```powershell
+Get-PSPodcast -Force
+```
 
 ## [Get-PSPodcast](docs/Get-PSPodcast.md)
 
@@ -68,6 +75,10 @@ ShowLinks   : {https://pdq.com/the-powershell-podcast,
 YouTube     : https://youtu.be/HoYKzgiJxkk
 ...
 ```
+
+By default, the command will only display the first paragraph of the episode description. You can use the `-Full` parameter to display the entire description.
+
+![Get-PSPodcast Full](images/get-pspodcast-full.png)
 
 ### All
 
@@ -170,8 +181,6 @@ Date      Length   Description
                    also recount what most be the most brutal display of
                    athleticism, curling.
 ```
-
-
 
 ### Format and Type Extensions
 
@@ -314,6 +323,10 @@ The `Show-LatestPSPodcast` function is a wrapper around `Get-PSPodcast`. It is d
 
 ![Show-LatestPSPodcast](images/pspod.png)
 
+The default behavior is to only display the first paragraph of the episode description. You can use the `-Full` parameter to display the entire description.
+
+![Show-LatestPSPodcast Full](images/pspod-full.png)
+
 You can customize the border, title, and link colors using any valid `Spectre.Console.Color` value. The function as an argument completer for the colo parameters. This will give you tab completion. And if you press`Ctrl+Space`, the PSReadLine module will display options formatted in the selected color.
 
 ![color completer](images/tab-complete-color.png)
@@ -422,8 +435,8 @@ PS C:\> $iv[0].messageData.rss.channel
 
 title           : The PowerShell Podcast
 link            : {atom:link, https://powershellpodcast.podbean.com}
-description     : The PowerShell Podcast highlights what makes PowerShell so great, the community. Each week we want
-                  to highlight people, blogs, videos, and modules that have gone into making PowerShell so great.
+description     : The PowerShell Podcast highlights what makes PowerShell so great, the community.
+                  Each week we want to highlight people, blogs, videos, and modules that have gone into making PowerShell so great.
 pubDate         : Mon, 12 May 2025 08:00:00 -0600
 generator       : https://podbean.com/?v=5.5
 language        : en
@@ -432,8 +445,8 @@ copyright       : Copyright 2022 All rights reserved.
 category        : {Technology, itunes:category}
 ttl             : 1440
 type            : episodic
-summary         : The PowerShell Podcast highlights what makes PowerShell so great, the community. Each week we want
-                  to highlight people, blogs, videos, and Galleries that have gone into making PowerShell so great.
+summary         : The PowerShell Podcast highlights what makes PowerShell so great, the community.
+                  Each week we want to highlight people, blogs, videos, and Galleries that have gone into making PowerShell so great.
 author          : PDQ.com
 owner           : owner
 block           : No
@@ -442,9 +455,11 @@ image           : {itunes:image, image}
 
 PS C:\> $iv[1].MessageData
 
-title       : {PowerShell, Security, and the Path to Mastery., PowerShell, Security, and the Path to Mastery.}
+title       : {PowerShell, Security, and the Path to Mastery., PowerShell, Security, and the Path
+              to Mastery.}
 link        : https://powershellpodcast.podbean.com/e/powershell-security-and-the-path-to-mastery/
-comments    : https://powershellpodcast.podbean.com/e/powershell-security-and-the-path-to-mastery/#comments
+comments    : https://powershellpodcast.podbean.com/e/powershell-security-and-the-path-to-mastery/
+              #comments
 pubDate     : Mon, 12 May 2025 08:00:00 -0600
 guid        : guid
 description : description
@@ -461,4 +476,4 @@ episodeType : full
 
 ## Road Map
 
-I have a few more ideas in mind and there will be a few more updates in the next few weeks. If you have an enhancement suggestion or question, please use the project's [Discussion](https://github.com/jdhitsolutions/PSPodcast/discussions) board.
+If you have an enhancement suggestion or question, please use the project's [Discussion](https://github.com/jdhitsolutions/PSPodcast/discussions) board.

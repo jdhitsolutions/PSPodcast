@@ -16,25 +16,25 @@ Get recent PowerShell Podcast episode information.
 ### last (Default)
 
 ```yaml
-Get-PSPodcast [[-Last] <Int32>] [-Force] [<CommonParameters>]
+Get-PSPodcast [[-Last] <Int32>] [-Full] [-Force] [<CommonParameters>]
 ```
 
 ### all
 
 ```yaml
-Get-PSPodcast [-All] [-Force] [<CommonParameters>]
+Get-PSPodcast [-All] [-Full] [-Force] [<CommonParameters>]
 ```
 
 ### episode
 
 ```yaml
-Get-PSPodcast [-Episode <Int32>] [-Force] [<CommonParameters>]
+Get-PSPodcast [-Episode <Int32>] [-Full] [-Force] [<CommonParameters>]
 ```
 
 ### query
 
 ```yaml
-Get-PSPodcast [-Query <String>] [-Force] [<CommonParameters>]
+Get-PSPodcast [-Query <String>] [-Full] [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -151,7 +151,7 @@ Online : https://powershellpodcast.podbean.com/e/powershell-microsoft-graph-and-
          mvp-wisdom-with-christian-ritter/
 
 Date   : 7/8/2024 10:00:00 AM
-Title  : Behind the Scenes at PSConf.EU: Harm Veenstra’s Experience and Insights
+Title  : Behind the Scenes at PSConf.EU: Harm Veenstra's Experience and Insights
 Online : https://powershellpodcast.podbean.com/e/behind-the-scenes-at-psconfeu-h
          arm-veenstra-s-experience-and-insights/
 
@@ -161,7 +161,7 @@ Online : https://powershellpodcast.podbean.com/e/powershell-global-devops-summit
          -2024-bar-session-4/
 
 Date   : 11/6/2023 10:00:00 AM
-Title  : Entra Insights and Merill Fernando’s Toolbox: Powering the Community
+Title  : Entra Insights and Merill Fernando's Toolbox: Powering the Community
 Online : https://powershellpodcast.podbean.com/e/entra-insights-and-merrill-fern
          ando-s-toolbox-powering-the-community/
 
@@ -256,6 +256,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Full
+
+Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -269,6 +285,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### PSPodcastInfo
 
 ## NOTES
+
+This command has an alias of gpod.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

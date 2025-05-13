@@ -53,4 +53,6 @@ Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 
-[Get-Command]()
+[Get-Command]( https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&WT.mc_id=ps-gethelp)
+
+[Get-Module](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.5&WT.mc_id=ps-gethelp)

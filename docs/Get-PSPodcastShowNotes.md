@@ -20,7 +20,7 @@ Get-PSPodcastShowNotes [-PSPodcastInfo] <Object> [[-TitleColor] <String>] [[-Bor
 
 ## DESCRIPTION
 
-Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of ShowNotes.
+Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module.
 
 Even though the command has a verb of Get, you should treat this command like a formatting command. You cannot pipe output from this command to another command.
 
@@ -97,6 +97,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Spectre.Console.Panel
 
 ## NOTES
+
+This command has an alias of ShowNotes.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

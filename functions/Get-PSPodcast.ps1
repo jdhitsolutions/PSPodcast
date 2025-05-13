@@ -30,6 +30,9 @@ Function Get-PSPodcast {
         [ValidateNotNullOrEmpty()]
         [string]$Query,
 
+        [Parameter(HelpMessage = "Display the full show description.")]
+        [switch]$Full,
+
         [Parameter(HelpMessage = 'Force downloading the RSS feed.')]
         [switch]$Force
     )
@@ -119,11 +122,20 @@ Function Get-PSPodcast {
                 else {
                     $YouTubeLink = $null
                 }
+
+                # 12 May 2025 JH - added a parameter to display the full episode description
+                if ($Full) {
+                    $summary = $item.summary.'#cdata-section'
+                }
+                else {
+                    $summary = ($item.summary.'#cdata-section' -split "`n")[0]
+
+                }
                 [PSCustomObject]@{
                     PSTypeName   = 'PSPodcastInfo'
                     Title        = $item.title[0]
                     Date         = $item.pubDate -as [datetime]
-                    Description  = ($item.summary.'#cdata-section' -split "`n")[0]
+                    Description  = $summary
                     Length       = $runTime
                     Link         = $item.link
                     Episode      = $item.episode

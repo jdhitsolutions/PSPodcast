@@ -21,8 +21,6 @@ Save-PSPodcast [[-Path] <String>] -PSPodcastInfo <Object> [-Passthru] [<CommonPa
 
 Use this command to download an MP3 file from a podcast episode. You will need to pass a result from Get-PSPodcast to download that episode. The default location is $HOME. The file name will be "PowerShellPodcast-<episode number>.mp3".
 
-This command has an alias of savepod.
-
 ## EXAMPLES
 
 ### Example 1
@@ -105,6 +103,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.IO.FileInfo
 
 ## NOTES
+
+This command has an alias of savepod.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

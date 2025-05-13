@@ -22,8 +22,12 @@ Function Show-LatestPSPodcast {
         [Parameter(HelpMessage = "Display the podcast information once every 24 hours. Use this when running this command in your profile script.")]
         [switch]$Profile,
 
+        [Parameter(HelpMessage = "Display the full show description.")]
+        [switch]$Full,
+
         [Parameter(HelpMessage = "The number of most recent episodes to display.")]
         [ValidateNotNullOrEmpty()]
+        [alias('Newest')]
         [int]$Last = 1
     )
 
@@ -51,7 +55,7 @@ Function Show-LatestPSPodcast {
 
     Try {
          Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieve the last $last episode(s)"
-        $recent = Get-PSPodcast -Last $Last -ErrorAction Stop
+        $recent = Get-PSPodcast -Last $Last -Full:$Full -ErrorAction Stop
     }
     Catch {
         #this is a catch all for any errors in the Get-PSPodcast function

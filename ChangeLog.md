@@ -1,8 +1,20 @@
 # PSPodcast Changelog
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and is maintained using the [ChangelogManagement](https://github.com/natescherer/ChangelogManagement) module.
 
 ## [Unreleased]
+
+## [0.7.0] - 2025-05-13
+
+### Added
+
+- Added parameter alias `Newest` to the `Last` parameter on `Show-LatestPSPodcast`.
+
+### Changed
+
+- Updated `Get-PSPodcast` and `Show-LatestPSPodcast` with a `-Full` parameter which will display the full episode description. Previous versions only showed the first paragraph which is still the default to avoid a breaking change.
+- Help updates.
+- Updated `README.md`.
 
 ## [0.6.0] - 2025-05-12
 
@@ -97,7 +109,8 @@ This is an unpublished version.
 
 - Added initial commands and aliases.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.6.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.7.0..HEAD
+[0.7.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.6.0..v0.7.0
 [0.6.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..v0.6.0
 [0.5.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.4.0..v0.5.0
 [0.4.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.3.0..v0.4.0

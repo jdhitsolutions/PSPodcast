@@ -14,7 +14,7 @@ Display the most recent PowerShell Podcast episode.
 ## SYNTAX
 
 ```yaml
-Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [-Last <Int32>] [<CommonParameters>]
+Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [-Full] [-Last <Int32>]  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,6 +34,14 @@ PS C:\> Show-LatestPSPodcast
 This will display a formatted Spectre console panel. You can adjust the colors using the command parameters.
 
 ### Example 2
+
+```powershell
+PS C:\> Show-LatestPSPodcast -full
+```
+
+Display the most recent episode with the full description.
+
+### Example 3
 
 ```powershell
 PS C:\> Show-LatestPSPodcast -profile
@@ -115,11 +123,27 @@ The number of most recent episodes to display.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Newest
 
 Required: False
 Position: Named
 Default value: 1
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Full
+
+Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -137,6 +161,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Spectre.Console.Panel
 
 ## NOTES
+
+This command has an alias of pspod.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

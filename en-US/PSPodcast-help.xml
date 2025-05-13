@@ -169,6 +169,17 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Full</maml:name>
+          <maml:description>
+            <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-PSPodcast</maml:name>
@@ -187,6 +198,17 @@
           <maml:name>Force</maml:name>
           <maml:description>
             <maml:para>Force downloading the RSS feed. When you import the module, the RSS feed is downloaded and cached. It is updated every 24 hours. If you want to force a refresh, use this parameter. This parameter was added in version 0.4.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Full</maml:name>
+          <maml:description>
+            <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -220,6 +242,17 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Full</maml:name>
+          <maml:description>
+            <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-PSPodcast</maml:name>
@@ -245,6 +278,17 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Full</maml:name>
+          <maml:description>
+            <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -309,6 +353,18 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Full</maml:name>
+        <maml:description>
+          <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -332,6 +388,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of gpod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -439,7 +496,7 @@ Online : https://powershellpodcast.podbean.com/e/powershell-microsoft-graph-and-
          mvp-wisdom-with-christian-ritter/
 
 Date   : 7/8/2024 10:00:00 AM
-Title  : Behind the Scenes at PSConf.EU: Harm Veenstra’s Experience and Insights
+Title  : Behind the Scenes at PSConf.EU: Harm Veenstra's Experience and Insights
 Online : https://powershellpodcast.podbean.com/e/behind-the-scenes-at-psconfeu-h
          arm-veenstra-s-experience-and-insights/
 
@@ -449,7 +506,7 @@ Online : https://powershellpodcast.podbean.com/e/powershell-global-devops-summit
          -2024-bar-session-4/
 
 Date   : 11/6/2023 10:00:00 AM
-Title  : Entra Insights and Merill Fernando’s Toolbox: Powering the Community
+Title  : Entra Insights and Merill Fernando's Toolbox: Powering the Community
 Online : https://powershellpodcast.podbean.com/e/entra-insights-and-merrill-fern
          ando-s-toolbox-powering-the-community/
 
@@ -536,7 +593,11 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Command</maml:linkText>
-        <maml:uri></maml:uri>
+        <maml:uri> https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&amp;WT.mc_id=ps-gethelp</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-Module</maml:linkText>
+        <maml:uri>https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.5&amp;WT.mc_id=ps-gethelp</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -550,7 +611,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module. This command has an alias of ShowNotes.</maml:para>
+      <maml:para>Use this command to display show notes for a given PowerShell Podcast episode in a formatted panel. The default output is custom formatted using tools from the pwshSpectreConsole module.</maml:para>
       <maml:para>Even though the command has a verb of Get, you should treat this command like a formatting command. You cannot pipe output from this command to another command.</maml:para>
     </maml:description>
     <command:syntax>
@@ -654,6 +715,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of ShowNotes.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -692,7 +754,6 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:details>
     <maml:description>
       <maml:para>Use this command to download an MP3 file from a podcast episode. You will need to pass a result from Get-PSPodcast to download that episode. The default location is $HOME. The file name will be "PowerShellPodcast-&lt;episode number&gt;.mp3".</maml:para>
-      <maml:para>This command has an alias of savepod.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -802,6 +863,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of savepod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -895,7 +957,7 @@ Mode                 LastWriteTime         Length Name
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Newest">
           <maml:name>Last</maml:name>
           <maml:description>
             <maml:para>The number of most recent episodes to display.</maml:para>
@@ -906,6 +968,17 @@ Mode                 LastWriteTime         Length Name
             <maml:uri />
           </dev:type>
           <dev:defaultValue>1</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Full</maml:name>
+          <maml:description>
+            <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -958,7 +1031,7 @@ Mode                 LastWriteTime         Length Name
         </dev:type>
         <dev:defaultValue>SpringGreen2</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Newest">
         <maml:name>Last</maml:name>
         <maml:description>
           <maml:para>The number of most recent episodes to display.</maml:para>
@@ -969,6 +1042,18 @@ Mode                 LastWriteTime         Length Name
           <maml:uri />
         </dev:type>
         <dev:defaultValue>1</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Full</maml:name>
+        <maml:description>
+          <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -993,6 +1078,7 @@ Mode                 LastWriteTime         Length Name
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of pspod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -1006,6 +1092,13 @@ Mode                 LastWriteTime         Length Name
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Show-LatestPSPodcast -full</dev:code>
+        <dev:remarks>
+          <maml:para>Display the most recent episode with the full description.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Show-LatestPSPodcast -profile</dev:code>
         <dev:remarks>
           <maml:para>Only show the podcast information once every 24 hours. Use this when running this command in your profile script.</maml:para>
