@@ -17,6 +17,17 @@ For best results, you should be using at least version 2.3.0 of the `pwshSpectre
 
 > *The module may not properly render images in VSCode.*
 
+## Module Commands
+
+| Name | Alias | Synopsis |
+|------|-------|----------|
+| [Get-AboutPSPodcast](docs/Get-AboutPSPodcast.md) |  | Display podcast About information. |
+| [Get-PSPodcast](docs/Get-PSPodcast.md) | *gpod* | Get recent PowerShell Podcast episode information. |
+| [Get-PSPodcastModule](docs/Get-PSPodcastModule.md) |  | Get the module information for the PSPodcast module. |
+| [Get-PSPodcastShowNotes](docs/Get-PSPodcastShowNotes.md) | *ShowNotes* | Get podcast show notes. |
+| [Save-PSPodcast](docs/Save-PSPodcast.md) |  | Download a podcast episode |
+| [Show-LatestPSPodcast](docs/Show-LatestPSPodcast.md) | *pspod* | Display the most recent PowerShell Podcast episode. |
+
 Run `Get-PSPodcastModule` to see the module commands and their descriptions. The output is an ANSI formatted table with clickable links to the project's GitHub repository and online help.
 
 ![Get-PSPodcastModule](images/get-pspodcastmodule.png)
@@ -25,7 +36,7 @@ Run `Get-PSPodcastModule` to see the module commands and their descriptions. The
 
 ## Module Import
 
-In order to improve performance of module commands, when the module is imported, the RSS feed XML file will be downloaded and saved to the TEMP folder. When you run `Get-PSPodcast`, the function will use this file instead of downloading the XML file again. However, if the file has not been found or is older than 24 hours, the XML file will be downloaded again. You can force the XML file to be downloaded again by running:
+In order to improve performance of module commands, when the module is imported, the RSS feed XML file, `feed.xml`, will be downloaded and saved to the %TEMP% folder. When you run `Get-PSPodcast`, the function will use this file instead of downloading the XML file again. However, if the file has not been found or is older than 24 hours, the XML file will be downloaded again. You can force the XML file to be downloaded again by running:
 
 ```powershell
 Get-PSPodcast -Force
@@ -86,33 +97,30 @@ If you want to get all published episodes, use the `-All` parameter. You might w
 
 ```powershell
 PS C:\> Get-PSPodcast -All | Group -Property {$_.date.year} -NoElement
-
 Count Name
 ----- ----
    44 2022
    53 2023
    54 2024
-   17 2025
-```
+   29 2025
 
-```powershell
-$all = Get-PSPodcast -all
-$y = $all | group { $_.date.year }
-Foreach ($item in $y) {
-    $totalMin = ($item.Group).Length.TotalMinutes | measure -Sum
-    [PSCustomObject]@{
-        Year      = $item.Name
-        Shows     = $item.Count
-        TotalTime = New-TimeSpan -Minutes $totalMin.Sum
-    }
-}
+PS C:\> $all = Get-PSPodcast -all
+PS C:\> $y = $all | group { $_.date.year }
+PS C:\> Foreach ($item in $y) {
+>>     $totalMin = ($item.Group).Length.TotalMinutes | measure -Sum
+>>     [PSCustomObject]@{
+>>         Year      = $item.Name
+>>         Shows     = $item.Count
+>>         TotalTime = New-TimeSpan -Minutes $totalMin.Sum
+>>     }
+>> }
 
 Year Shows TotalTime
 ---- ----- ---------
 2022    44 2.04:27:00
 2023    53 2.10:35:00
 2024    54 2.03:42:00
-2025    17 11:44:00
+2025    29 22:54:00
 ```
 
 ### Episode
@@ -127,13 +135,11 @@ PS C:\> Get-PSPodcast -Episode 160
 
 Date      Length   Description
 ----      ------   -----------
-2/24/2025 00:33:49 In this episode of the PowerShell Podcast,we sit down with
-                   Morten Kristensen, an automation specialist and PowerShell
-                   enthusiast, to discuss his journey with PowerShell, his
-                   experience working with the Microsoft Graph API, and his
-                   recent leap into public speaking. Morten shares insights
-                   from his first-ever technical talk, the challenges of
-                   working with Graph API, and how he's navigating his
+2/24/2025 00:33:49 In this episode of the PowerShell Podcast,we sit down withMorten Kristensen, an
+                   automation specialist and PowerShell enthusiast, to discuss his journey with
+                   PowerShell, his experience working with the Microsoft Graph API, and his recent
+                   leap into public speaking. Morten shares insights from his first-ever technical
+                   talk, the challenges of working with Graph API, and how he's navigating his
                    professional growth.
 ```
 
@@ -141,46 +147,39 @@ Date      Length   Description
 
 Finally, you can find podcast episodes with a given keyword or phrase using the `-Query` parameter. This will search the title and description of each episode. The podcast XML feed does not have a specific entry for the guest, so this is the best way to find episodes with a specific guest.
 
-```powershell
+```dos
 PS C:\> Get-PSPodcast -query "frank lesniak"
 
-   Show: PowerShell Summit Bar Sessions 2025 - Frank Lesniak [Episode #168]
-
-Date     Length   Description
+   Date     Length   Description
 ----     ------   -----------
-4/9/2025 00:24:06 In this episode of the PowerShell Summit 2025 Bar Sessions,
-                  Frank Lesniak makes a triumphant return to the podcast. Frank
-                  has taken the reigns In this two-sided interview, Frank flips
-                  the script and interviews Andrew, but only after we talk
-                  about how his week is going, fine dining, how to grow in your
-                  career and capitalize on opportunity, the value of empowering
-                  others, and more!
+4/9/2025 00:24:06 In this episode of the PowerShell Summit 2025 Bar Sessions, Frank Lesniak makes a
+                  triumphant return to the podcast. Frank has taken the reigns In this two-sided
+                  interview, Frank flips the script and interviews Andrew, but only after we talk
+                  about how his week is going, fine dining, how to grow in your career and
+                  capitalize on opportunity, the value of empowering others, and more!
 
-   Show: Cross-Platform PowerShell and Sending Emails with Frank Lesniak & Neha
-Patil [Episode #142]
+   Show: Cross-Platform PowerShell and Sending Emails with Frank Lesniak & Neha Patil [Episode #142]
 
 Date       Length   Description
 ----       ------   -----------
-10/21/2024 00:50:32 In this episode of the PowerShell Podcast, we dive into the
-                    world of cross-platform PowerShell with Frank Lesniak, who
-                    shares insights from his recent talk at PowerShell Saturday
-                    NC. Frank explores some unique use cases for PowerShell
-                    across different platforms and opens up about his interests
-                    beyond the scripting language.
+10/21/2024 00:50:32 In this episode of the PowerShell Podcast, we dive into the world of
+                    cross-platform PowerShell with Frank Lesniak, who shares insights from his
+                    recent talk at PowerShell Saturday NC. Frank explores some unique use cases for
+                    PowerShell across different platforms and opens up about his interests beyond
+                    the scripting language.
 
-   Show: For the love of PowerShell and Curling with Frank Lesniak [Episode
-#119]
+   Show: For the love of PowerShell and Curling with Frank Lesniak [Episode #119]
 
 Date      Length   Description
 ----      ------   -----------
-5/13/2024 00:33:54 In this special MMSMOA episode of the PowerShell Podcast,
-                   Andrew is joined by Frank Lesniak. We touch base after
-                   PowerShell Summit, hear about tracking airplanes with ADS-B
-                   and raspberry pi's. Frank talks about classes and how they
-                   almost caused him to fall out of love with PowerShell. We
-                   also recount what most be the most brutal display of
-                   athleticism, curling.
+5/13/2024 00:33:54 In this special MMSMOA episode of the PowerShell Podcast, Andrew is joined by
+                   Frank Lesniak. We touch base after PowerShell Summit, hear about tracking
+                   airplanes with ADS-B and raspberry pi's. Frank talks about classes and how they
+                   almost caused him to fall out of love with PowerShell. We also recount what most
+                   be the most brutal display of athleticism, curling.
 ```
+
+The default output will have clickable links for the show.
 
 ### Format and Type Extensions
 
@@ -199,13 +198,13 @@ GetHashCode  Method        int GetHashCode()
 GetType      Method        type GetType()
 ToString     Method        string ToString()
 Date         NoteProperty  datetime Date=4/10/2025 5:00:00 PM
-Description  NoteProperty  string Description=In this casual bar-session chat r…
-DownloadLink NoteProperty  string DownloadLink=https://mcdn.podbean.com/mf/web/…
+Description  NoteProperty  string Description=In this casual bar-session chat r...
+DownloadLink NoteProperty  string DownloadLink=https://mcdn.podbean.com/mf/web/...
 Episode      NoteProperty  string Episode=169
 Length       NoteProperty  System.TimeSpan Length=00:13:26
-Link         NoteProperty  string Link=https://powershellpodcast.podbean.com/e/…
+Link         NoteProperty  string Link=https://powershellpodcast.podbean.com/e/...
 ShowLinks    NoteProperty  string[] ShowLinks=System.String[]
-Title        NoteProperty  string Title=PowerShell Summit Bar Sessions 2025 - D…
+Title        NoteProperty  string Title=PowerShell Summit Bar Sessions 2025 - D...
 YouTube      NoteProperty  object YouTube=null
 Links        PropertySet   Links {Title, Date, Online, YouTube, ShowLinks}
 list         PropertySet   list {Episode, Date, Title}
@@ -219,23 +218,21 @@ PS C:\> Get-PSPodcast -Episode 96 | Select-Object links
 
 Title     : Code in Action: Embracing Hands-On Learning with Jeff Hicks
 Date      : 12/11/2023 10:00:00 AM
-Online    : https://powershellpodcast.podbean.com/e/code-in-action-embracing-han
-            ds-on-learning-with-jeff-hicks/
+Online    : https://powershellpodcast.podbean.com/e/code-in-action-embracing-hands-on-learning-w...
 YouTube   : https://www.youtube.com/watch?v=lV5RXZPiM_0
 ShowLinks : {https://www.youtube.com/watch?v=lV5RXZPiM_0,
             https://powershell.org/2023/11/earlybirdnowopen/,
-            https://jeffhicks.substack.com/p/ask-jeff-ab8, https://devdojo.com/h
-            critter/powershell-perfomance-test-get-the-maximum…}
+            https://jeffhicks.substack.com/p/ask-jeff-ab8, https://devdojo.com/hcritter/powersh...}
 
 PS C:\> Get-PSPodcast -Last 5 | Select-Object list
 
 Episode Date                  Title
 ------- ----                  -----
 169     4/10/2025 5:00:00 PM  PowerShell Summit Bar Sessions 2025 - David R
-168     4/9/2025 5:13:01 PM   PowerShell Summit Bar Sessions 2025 - Frank Lesni…
+168     4/9/2025 5:13:01 PM   PowerShell Summit Bar Sessions 2025 - Frank Lesni...
 167     4/8/2025 5:30:00 PM   PowerShell Summit Bar Sessions 2025 - Steven Judd
-166     4/7/2025 10:00:00 AM  Discovering the Deeper Layers of PowerShell with …
-165     3/31/2025 10:00:00 AM From Proper Football to Databases with Jess Pomfr…
+166     4/7/2025 10:00:00 AM  Discovering the Deeper Layers of PowerShell with ...
+165     3/31/2025 10:00:00 AM From Proper Football to Databases with Jess Pomfr...
 ```
 
 The module has default list and table formatted views. In addition, you can use the `list` custom table view.
@@ -301,8 +298,7 @@ PS C:\> $r[5] | Select Links
 Title     : How to Build an IT Career from the Ground Up with Kevin Apolinario
             (KevTech)
 Date      : 3/24/2025 10:00:00 AM
-Online    : https://powershellpodcast.podbean.com/e/how-to-build-an-it-career-fr
-            om-the-ground-up-with-kevin-apolinario-kevtech/
+Online    : https://powershellpodcast.podbean.com/e/how-to-build-an-it-career-from-the-ground-up-...
 YouTube   : https://youtu.be/RrNyh6EuD_Q
 ShowLinks : {https://kevtechitsupport.com, http://discord.gg/pdq,
             https://pdq.com/the-powershell-podcast,
@@ -377,7 +373,7 @@ Mode                 LastWriteTime         Length Name
 
 If the flag file exists, __and__ you use the `-Profile` parameter, the command will test the `LastWriteTime` property. If it is greater than 24 hours, the command will display the latest episode and update the flag file. If the file is less than 24 hours, the command will not display anything. This should make it possible to have the command in your profile without it displaying every time you start a new session.
 
-Of course, you can force display by omitting the `-Profile` parameter.
+You can force display of the latest show by omitting the `-Profile` parameter.
 
 __If you uninstall the module you will need to manually delete the flag file.__
 
