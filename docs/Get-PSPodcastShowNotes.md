@@ -29,10 +29,10 @@ Even though the command has a verb of Get, you should treat this command like a 
 ### Example 1
 
 ```powershell
-PS C:\> $r[3] | Get-PSPodcastShowNotes
+PS C:\> Get-PSPodcast -Last 1 | Get-PSPodcastShowNotes
 ```
 
-Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.
+Pipe a PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.
 
 ## PARAMETERS
 
@@ -98,12 +98,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-This command has an alias of ShowNotes.
+This command has aliases of ShowNotes and podnotes
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 
 [Get-PSPodcast](Get-PSPodcast.md)
+
+[Get-PSPodcastTakeAway](Get-PSPodcastTakeAway.md)
 
 [Show-LatestPSPodcast](Show-LatestPSPodcast.md)

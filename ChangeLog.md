@@ -4,6 +4,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
+## [0.8.0] - 2025-08-23
+
+### Added
+
+- Added command `Get-PSPodcastTakeAway` with aliases of `takeaway` and `podpoints` to display an episodes key points takeaways.
+- Added new command aliases.
+- `getpod` for `Get-PSPodcast`
+- `showpod` for `Show-LatestPSPodcast`
+- `podmod` for `Get-PSPodcastModule`
+- `podnotes` for `Get-PSPodcastShowNotes`
+- `aboutpod` for `Get-AboutPSPodcast`
+
+### Changed
+
+- Minor code cleanup.
+- Added information messages to `Get-PSPodcastShowNotes`.
+
+### Fixed
+
+- Exported missing alias `savepod`.
+
 ## [0.7.0] - 2025-05-13
 
 ### Added
@@ -109,7 +130,8 @@ This is an unpublished version.
 
 - Added initial commands and aliases.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.7.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.8.0..HEAD
+[0.8.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.7.0..v0.8.0
 [0.7.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.6.0..v0.7.0
 [0.6.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..v0.6.0
 [0.5.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.4.0..v0.5.0

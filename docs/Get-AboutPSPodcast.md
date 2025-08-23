@@ -30,7 +30,7 @@ This is a simple function to display information about The PowerShell Podcast.
 PS C:\> Get-AboutPSPodcast
 ```
 
-The default output should have clickable links.
+The default output is a formatted Spectre.Console panel that should have clickable links.
 
 ## PARAMETERS
 
@@ -95,6 +95,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String formatted as a Spectre.Console Panel
 
 ## NOTES
+
+This command has an alias of aboutpod
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

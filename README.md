@@ -15,18 +15,19 @@ Install-PSResource PSPodcast
 
 For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module.
 
-> *The module may not properly render images in VSCode.*
+> *The module may not render images properly in VSCode.*
 
 ## Module Commands
 
 | Name | Alias | Synopsis |
 |------|-------|----------|
-| [Get-AboutPSPodcast](docs/Get-AboutPSPodcast.md) |  | Display podcast About information. |
-| [Get-PSPodcast](docs/Get-PSPodcast.md) | *gpod* | Get recent PowerShell Podcast episode information. |
-| [Get-PSPodcastModule](docs/Get-PSPodcastModule.md) |  | Get the module information for the PSPodcast module. |
-| [Get-PSPodcastShowNotes](docs/Get-PSPodcastShowNotes.md) | *ShowNotes* | Get podcast show notes. |
-| [Save-PSPodcast](docs/Save-PSPodcast.md) |  | Download a podcast episode |
-| [Show-LatestPSPodcast](docs/Show-LatestPSPodcast.md) | *pspod* | Display the most recent PowerShell Podcast episode. |
+| [Get-AboutPSPodcast](docs/Get-AboutPSPodcast.md) | *aboutpod* | Display podcast About information. |
+| [Get-PSPodcast](docs/Get-PSPodcast.md) | *getpod*, *gpod* | Get recent PowerShell Podcast episode information. |
+| [Get-PSPodcastModule](docs/Get-PSPodcastModule.md) | *podmod* | Get the module information for the PSPodcast module. |
+| [Get-PSPodcastShowNotes](docs/Get-PSPodcastShowNotes.md) | *podnotes*, *ShowNotes* | Get podcast show notes. |
+| [Get-PSPodcastTakeAway](docs/Get-PSPodcastTakeAway.md) | *podpoints*, *takeaway* | Show episode key points. |
+| [Save-PSPodcast](docs/Save-PSPodcast.md) | *savepod* | Download a podcast episode. |
+| [Show-LatestPSPodcast](docs/Show-LatestPSPodcast.md) | *pspod*, *showpod* | Display the most recent PowerShell Podcast episode. |
 
 Run `Get-PSPodcastModule` to see the module commands and their descriptions. The output is an ANSI formatted table with clickable links to the project's GitHub repository and online help.
 
@@ -287,6 +288,27 @@ Mode                 LastWriteTime         Length Name
 ```
 
 The file name uses the format `PowerShellPodcast-<episode number>.mp3`.
+
+## [Get-PSPodcastTakeAway](docs/Get-PSPodcastTakeAway.md)
+
+The show description often includes a summary of key points or takeaways from the episode. You can normally see this when using the `Full` parameter with `Get-PSPodcast`. However, this information is also parsed and stored in the `KeyPoinbs` property of the `PSPodcastInfo` object.
+
+```powershell
+PS C:\> $p = Get-PSPodcast -Last 1
+PS C:\> $p.keyPoints
+You don't need to learn everything. Just understand the ecosystem and build your learning map.
+Create your PowerShell profile now -- it's an easy win with huge productivity returns.
+AI is a tool, not a crutch. Use it wisely and validate the results.
+Get involved in the community.It will accelerate your learning and broaden your opportunities.
+PS C:\>
+```
+
+You can use the `Get-PSPodcastTakeAway` function to display this information using the `Get-PSPodcastTakeAway` function or its alias `takeaway`.
+
+![PSPodcast takeaways](images/takeaways.png)
+
+The output is formatted using the `Format-SpectrePanel` command from the `pwshSpectreConsole` module.
+
 
 ## [Get-PSPodcastShowNotes](docs/Get-PSPodcastShowNotes.md)
 

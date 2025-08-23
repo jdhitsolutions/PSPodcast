@@ -1,7 +1,7 @@
 Function Get-PSPodcastShowNotes {
     [cmdletbinding()]
     [OutputType('Spectre.Console.Panel')]
-    [Alias('ShowNotes')]
+    [Alias('ShowNotes','podnotes')]
 
     Param(
         [Parameter(
@@ -25,9 +25,12 @@ Function Get-PSPodcastShowNotes {
     Begin {
         Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
         Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
+        Write-Information $PSBoundParameters -Tags runtime
+        [regex]$rxLink = "(?<=<li>)(?!.*https)([^<]*)(?=\<\/li)"
     }
     Process {
         Write-Verbose "[$((Get-Date).TimeOfDay)] Getting show notes for $($PSPodcastInfo.Episode)"
+        Write-Information $PSPodcastInfo -Tags runtime
         #create a clickable link for the episode
         Write-Verbose "[$((Get-Date).TimeOfDay)] Defining a link to $($PSPodcastInfo.Link)"
         $episodeLink = "[link=$($PSPodcastInfo.Link)]$($PSPodcastInfo.Title)[/]"

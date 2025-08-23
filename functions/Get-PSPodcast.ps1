@@ -1,7 +1,7 @@
 Function Get-PSPodcast {
     [cmdletbinding(DefaultParameterSetName = 'last')]
     [OutputType('PSPodcastInfo')]
-    [alias("gpod")]
+    [alias("gpod","getpod")]
     Param(
         [Parameter(
             Position = 0,
@@ -129,13 +129,18 @@ Function Get-PSPodcast {
                 }
                 else {
                     $summary = ($item.summary.'#cdata-section' -split "`n")[0]
-
                 }
+
+                # 22 Aug 2025 JH - parse out key topics
+                [regex]$rxLink = "(?<=<li>)(?!.*https)([^<]*)(?=\<\/li)"
+                $keyPoints = $rxLink.Matches($item.description.'#cdata-section').value
+
                 [PSCustomObject]@{
                     PSTypeName   = 'PSPodcastInfo'
                     Title        = $item.title[0]
                     Date         = $item.pubDate -as [datetime]
                     Description  = $summary
+                    KeyPoints    = $keyPoints
                     Length       = $runTime
                     Link         = $item.link
                     Episode      = $item.episode

@@ -1,6 +1,7 @@
 Function Get-PSPodcastModule {
     [cmdletbinding()]
     [OutputType("String")]
+    [alias("podmod")]
     Param()
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -28,7 +29,7 @@ Function Get-PSPodcastModule {
         }
     }},
     @{Name="Alias";Expression={
-        $alias = (Get-Alias -Definition $_.Name -ErrorAction SilentlyContinue).Name
+        $alias = (Get-Alias -Definition $_.Name -ErrorAction SilentlyContinue).Name -join ','
         "[Gold1 italic]$alias[/]"
     }},
     @{Name="Synopsis";Expression = { (Get-Help $_.name).Synopsis}} |

@@ -286,12 +286,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-This command has an alias of gpod.
+This command has aliases of gpod and getpod.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 
 [Show-LatestPSPodcast](Show-LatestPSPodcast.md)
+
+[Get-PSPodcastShowNotes](Get-PSPodcastShowNotes.md)
+
+[Get-PSPodcastTakeAway](Get-PSPodcastTakeAway.md)
 
 [Save-PSPodcast](Save-PSPodcast.md)

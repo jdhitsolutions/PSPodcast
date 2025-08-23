@@ -1,6 +1,6 @@
 Function Show-LatestPSPodcast {
     [cmdletbinding()]
-    [alias('pspod')]
+    [alias('pspod','showpod')]
     [OutputType('Spectre.Console.Panel')]
     Param(
         [Parameter(HelpMessage = "The color of the title text.")]

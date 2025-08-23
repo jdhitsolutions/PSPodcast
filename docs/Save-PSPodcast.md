@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Download a podcast episode
+Download a podcast episode.
 
 ## SYNTAX
 
@@ -27,16 +27,16 @@ Use this command to download an MP3 file from a podcast episode. You will need t
 
 ```powershell
 PS C:\> $r = Get-PSPodcast -Last 5
-PS C:\> $r[0] | Save-PSPodcast -Path d:\ -Passthru
+PS C:\> $r[0] | Save-PSPodcast -Path d:\podcasts -Passthru
 
-    Directory: D:\
+    Directory: D:\podcasts
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 -a---           4/12/2025 12:41 PM       32255999 PowerShellPodcast-169.mp3
 ```
 
-Save the most recent podcast episode to the D:\ drive.
+Save the most recent podcast episode to the D:\podcasts folder.
 
 ## PARAMETERS
 

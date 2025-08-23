@@ -162,7 +162,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-This command has an alias of pspod.
+This command has aliases of pspod and showpod.
 
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 

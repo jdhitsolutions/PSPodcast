@@ -2,6 +2,7 @@
 
 Function Get-AboutPSPodcast {
     [cmdletbinding()]
+    [alias("aboutpod")]
     Param(
         [Parameter(HelpMessage = "The color of the description text.")]
         [ValidateNotNullOrEmpty()]

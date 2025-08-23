@@ -112,6 +112,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of aboutpod</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -120,7 +121,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-AboutPSPodcast</dev:code>
         <dev:remarks>
-          <maml:para>The default output should have clickable links.</maml:para>
+          <maml:para>The default output is a formatted Spectre.Console panel that should have clickable links.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -388,7 +389,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>This command has an alias of gpod.</maml:para>
+        <maml:para>This command has aliases of gpod and getpod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -528,6 +529,14 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
+        <maml:linkText>Get-PSPodcastShowNotes</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcastTakeAway</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Save-PSPodcast</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -574,6 +583,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
+        <maml:para>This command has an alias of podmod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
@@ -715,16 +725,16 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>This command has an alias of ShowNotes.</maml:para>
+        <maml:para>This command has aliases of ShowNotes and podnotes</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $r[3] | Get-PSPodcastShowNotes</dev:code>
+        <dev:code>PS C:\&gt; Get-PSPodcast -Last 1 | Get-PSPodcastShowNotes</dev:code>
         <dev:remarks>
-          <maml:para>Pipe a previously retrieved PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.</maml:para>
+          <maml:para>Pipe a PSPodcastInfo object to this command. The output will be a formatted Spectre Console panel. You can adjust the colors using the command parameters.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -738,7 +748,176 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
+        <maml:linkText>Get-PSPodcastTakeAway</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Show-LatestPSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-PSPodcastTakeAway</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>PSPodcastTakeAway</command:noun>
+      <maml:description>
+        <maml:para>Show episode key points.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Pipe a PSPodcastInfo object to this cmdlet to show the key points from the episode in a formatted panel. This command has an alias of takeaway. You can also view the key points by viewing the KeyPoints property of the PSPodcastInfo object.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PSPodcastTakeAway</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>PSPodcastInfo</maml:name>
+          <maml:description>
+            <maml:para>The PSPodcastInfo object.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>TitleColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the title text.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>LinkColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the link text.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
+          <maml:name>BorderColor</maml:name>
+          <maml:description>
+            <maml:para>The color of the border.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
+        <maml:name>BorderColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the border.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>LinkColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the link text.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>PSPodcastInfo</maml:name>
+        <maml:description>
+          <maml:para>The PSPodcastInfo object.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>TitleColor</maml:name>
+        <maml:description>
+          <maml:para>The color of the title text.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Spectre.Console.Panel</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>This command has aliases of takeaway and podpoints.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-PSPodcast -Last 1 | Get-PSPodcastTakeAway</dev:code>
+        <dev:remarks>
+          <maml:para>The output is a formatted Spectre.Console panel. You can adjust the colors using the command parameters.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/ccb338</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcast</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSPodcastShowNotes</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -749,7 +928,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       <command:verb>Save</command:verb>
       <command:noun>PSPodcast</command:noun>
       <maml:description>
-        <maml:para>Download a podcast episode</maml:para>
+        <maml:para>Download a podcast episode.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -871,15 +1050,15 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $r = Get-PSPodcast -Last 5
-PS C:\&gt; $r[0] | Save-PSPodcast -Path d:\ -Passthru
+PS C:\&gt; $r[0] | Save-PSPodcast -Path d:\podcasts -Passthru
 
-    Directory: D:\
+    Directory: D:\podcasts
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 -a---           4/12/2025 12:41 PM       32255999 PowerShellPodcast-169.mp3</dev:code>
         <dev:remarks>
-          <maml:para>Save the most recent podcast episode to the D:\ drive.</maml:para>
+          <maml:para>Save the most recent podcast episode to the D:\podcasts folder.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1078,7 +1257,7 @@ Mode                 LastWriteTime         Length Name
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>This command has an alias of pspod.</maml:para>
+        <maml:para>This command has aliases of pspod and showpod.</maml:para>
         <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
