@@ -28,7 +28,11 @@ Function Show-LatestPSPodcast {
         [Parameter(HelpMessage = "The number of most recent episodes to display.")]
         [ValidateNotNullOrEmpty()]
         [alias('Newest')]
-        [int]$Last = 1
+        [int]$Last = 1,
+
+        [Parameter(HelpMessage = "Write raw, unformatted data to the pipeline.")]
+        [Alias("Raw")]
+        [switch]$DataOnly
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -54,7 +58,7 @@ Function Show-LatestPSPodcast {
     }
 
     Try {
-         Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieve the last $last episode(s)"
+        Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieve the last $last episode(s)"
         $recent = Get-PSPodcast -Last $Last -Full:$Full -ErrorAction Stop
     }
     Catch {
@@ -66,7 +70,12 @@ Function Show-LatestPSPodcast {
 
     if ($recent) {
         foreach ($r in $recent) {
-            Write-Verbose "[$((Get-Date).TimeOfDay)] Processing episode $($r.episode)"
+            if ($DataOnly) {
+                #write the raw data to the pipeline
+                $r | Select-Object *
+            }
+            else {
+                Write-Verbose "[$((Get-Date).TimeOfDay)] Processing episode $($r.episode) from $($r.date)"
 
             #Define the text to display in the panel
             $show = @"
@@ -77,24 +86,25 @@ Function Show-LatestPSPodcast {
 [underline $LinkColor link]$($r.Link)[/]
 "@
 
-            #define the panel title
-            $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
-            Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
-            $paramHash = @{
-                Data    = $show
-                Header  = $title
-                Border  = 'Rounded'
-                Color   = $BorderColor
-            }
+                #define the panel title
+                $title = "Latest from The PowerShell Podcast: Episode {0} {1}" -f $r.Episode, $r.Date.ToShortDateString()
+                Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
+                $paramHash = @{
+                    Data    = $show
+                    Header  = $title
+                    Border  = 'Rounded'
+                    Color   = $BorderColor
+                }
 
-            Format-SpectrePanel @paramHash | Out-SpectreHost
+                Format-SpectrePanel @paramHash | Out-SpectreHost
 
-            if ($Profile) {
-            Write-Verbose "[$((Get-Date).TimeOfDay)] Updating the flag file"
-                $r | ConvertTo-JSON | Out-File -FilePath $profileFlag -Force -Encoding utf8
-            }
+                if ($Profile) {
+                Write-Verbose "[$((Get-Date).TimeOfDay)] Updating the flag file"
+                    $r | ConvertTo-JSON | Out-File -FilePath $profileFlag -Force -Encoding utf8
+                }
+            } #else format
+        } #foreach result
     } #if podcast data
-    }
     Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 } #close function
 

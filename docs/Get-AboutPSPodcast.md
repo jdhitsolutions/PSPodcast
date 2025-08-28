@@ -14,7 +14,7 @@ Display podcast About information.
 ## SYNTAX
 
 ```yaml
-Get-AboutPSPodcast [[-TextColor] <String>] [[-BorderColor] <String>] [-Force]
+Get-AboutPSPodcast [[-TextColor] <String>] [[-BorderColor] <String>] [-Force] [-DataOnly]
  [<CommonParameters>]
 ```
 
@@ -82,6 +82,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -DataOnly
+
+Write raw, unformatted data to the pipeline.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Raw
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -101,3 +117,5 @@ This command has an alias of aboutpod
 Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
+
+[Home](https://powershellpodcast.podbean.com/)

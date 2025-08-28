@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and is maintained using the [ChangelogManagement](https://github.com/natescherer/ChangelogManagement) module.
 
 ## [Unreleased]
+### Added
+- Added the parameter `DataOnly` with an alias of `Raw` to `Get-PSPodcastModule`, ` Get-AboutPSPodcast`,`Get-PSPodcastTakeaway`, `Show-LatestPSPodcast`, and `Get-PSPodcastShowNotes` to write unformatted data to the pipeline.
+- Added the `Microsoft.PowerShell.ThreadJob` module as a requirement. [[Issue #1](https://github.com/jdhitsolutions/PSPodcast/issues/1)]
+
+### Changed
+- Revised module to download feed XML file using a thread job on module import.
 
 ## [0.8.0] - 2025-08-23
 

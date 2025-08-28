@@ -20,22 +20,37 @@ Function Get-PSPodcastShowNotes {
         [Parameter(HelpMessage = "The color of the border.")]
         [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
         ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
-        [string]$BorderColor = "GreenYellow"
+        [string]$BorderColor = "GreenYellow",
+
+        [Parameter(HelpMessage = "Write raw, unformatted data to the pipeline.")]
+        [Alias("Raw")]
+        [switch]$DataOnly
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
         Write-Verbose "[$((Get-Date).TimeOfDay)] Using PowerShell version $($PSVersionTable.PSVersion) on $($PSVersionTable.OS)"
         Write-Information $PSBoundParameters -Tags runtime
         [regex]$rxLink = "(?<=<li>)(?!.*https)([^<]*)(?=\<\/li)"
-    }
+    } #begin
     Process {
         Write-Verbose "[$((Get-Date).TimeOfDay)] Getting show notes for $($PSPodcastInfo.Episode)"
         Write-Information $PSPodcastInfo -Tags runtime
         #create a clickable link for the episode
         Write-Verbose "[$((Get-Date).TimeOfDay)] Defining a link to $($PSPodcastInfo.Link)"
+
+        If ($DataOnly) {
+            [PSCustomObject]@{
+                Title     = $PSPodcastInfo.title
+                Episode   = $PSPodcastInfo.Episode
+                Date      = $PSPodcastInfo.Date
+                ShowNotes = $PSPodcastInfo.ShowLinks
+                Link      = $PSPodcastInfo.Link
+            }
+        }
+        else {
         $episodeLink = "[link=$($PSPodcastInfo.Link)]$($PSPodcastInfo.Title)[/]"
 
-        $data= @"
+    $data= @"
 
 [italic $TitleColor]$episodeLink[/]
 
@@ -45,8 +60,9 @@ $($PSPodcastInfo.ShowLinks | Out-String)
         $title = "Show Notes {0:d}" -f $PSPodcastInfo.Date
 
         Format-SpectrePanel -data $data -title $title -Color $BorderColor -Width 75 | Out-SpectreHost
-    }
+        }
+    } #process
     End {
         Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
-    }
+    } #end
 }

@@ -3,7 +3,7 @@
 #
 @{
     RootModule           = 'PSPodcast.psm1'
-    ModuleVersion        = '0.8.0'
+    ModuleVersion        = '1.0.0'
     CompatiblePSEditions = 'Core'
     GUID                 = '3618f898-6fe7-4d94-82e3-23926498ff6d'
     Author               = 'Jeff Hicks'
@@ -38,7 +38,8 @@
         'aboutpod'
         )
     RequiredModules      = @(
-        @{ ModuleName = 'pwshSpectreConsole'; ModuleVersion = '2.3.0' }
+        @{ ModuleName = 'pwshSpectreConsole'; ModuleVersion = '2.3.0' },
+        'Microsoft.PowerShell.ThreadJob'
     )
     PrivateData          = @{
         PSData = @{
@@ -46,9 +47,7 @@
             LicenseUri                 = 'https://github.com/jdhitsolutions/PSPodcast/blob/main/LICENSE.txt'
             ProjectUri                 = 'https://github.com/jdhitsolutions/PSPodcast'
             # IconUri = ''
-            ReleaseNotes = @"
-
-"@
+            ReleaseNotes = ""
             ExternalModuleDependencies = @('pwshSpectreConsole')
         } # End of PSData hashtable
     } # End of PrivateData hashtable

@@ -20,21 +20,27 @@ $tmpXml = Join-Path -Path $tmp -ChildPath 'feed.xml'
 If ((-Not (Test-Path -path $tmpXml)) -OR ((Get-Date) - (Get-Item $tmpXml).LastWriteTime).TotalHours -gt 24) {
     $r = _testFeed
     if ($r) {
-        Try {
-            #This is faster than using Invoke-RestMethod
-            Invoke-WebRequest -Uri $rssFeed -OutFile $tmpXml -ErrorAction Stop
-            #validate the file is valid XML
+        # 25 August 2025 move feed download to a thread job Issue #1
+        Write-Verbose "Downloading feed.xml as background job"
+        $dlJob = Start-ThreadJob -scriptblock {
+            Param($rssFeed,$tmpXml)
             Try {
-                [xml]$test = Get-Content -Path $tmpXml -ErrorAction Stop
+                #This is faster than using Invoke-RestMethod
+                Invoke-WebRequest -Uri $rssFeed -OutFile $tmpXml -ErrorAction Stop
+                #validate the file is valid XML
+                Try {
+                    [xml]$test = Get-Content -Path $tmpXml -ErrorAction Stop
+                }
+                Catch {
+                    throw "Invalid XML file"
+                }
+                Get-Item $tmpXml
             }
             Catch {
-                throw "Invalid XML file"
+                #this should never get called
+                $_
             }
-        }
-        Catch {
-            #this should never get called
-            $_
-        }
+        } -ArgumentList $rssFeed,$tmpXml -Name GetPodcastFeed
     } #site is available
     else {
        throw "Cannot retrieve PSPodcast XML feed from $rssFeed."

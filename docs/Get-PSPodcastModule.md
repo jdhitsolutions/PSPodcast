@@ -14,7 +14,7 @@ Get the module information for the PSPodcast module.
 ## SYNTAX
 
 ```yaml
-Get-PSPodcastModule [<CommonParameters>]
+Get-PSPodcastModule [-DataOnly] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,6 +34,22 @@ PS C:\> Get-PSPodcastModule
 The output is an ANSI formatted table using the pswhSpectreConsole module. The display should have clickable links. Clicking the title should open the module's GitHub repository. The command links should open the online help for the command.
 
 ## PARAMETERS
+
+### -DataOnly
+
+Write raw, unformatted data to the pipeline.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Raw
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 
@@ -55,6 +71,6 @@ Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 
-[Get-Command]( https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&WT.mc_id=ps-gethelp)
+[Get-Command](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&WT.mc_id=ps-gethelp)
 
 [Get-Module](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.5&WT.mc_id=ps-gethelp)

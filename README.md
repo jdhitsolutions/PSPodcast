@@ -2,20 +2,22 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSPodcast.png?style=for-the-badge&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSPodcast/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSPodcast.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSPodcast/)
 
-![The PowerShell Podcast logo](images/podcast-logo-small.jpg)
+![The PowerShell Podcast logo](images/podcast-logo-thumbnail.jpg)
 <hr/>
 
 This is a relatively simple module designed to get and display information about recent episodes of [The PowerShell Podcast](https://powershellpodcast.podbean.com/). The module commands are not written with automation or scaling in mind. They are designed for interactive use to display podcast information in a visually engaging way. For best results, run the commands in a terminal that supports ANSI colors and formatting, such as Windows Terminal.
 
-This module requires PowerShell 7 and has a dependency on the [pwshSpectreConsole](https://github.com/ShaunLawrie/PwshSpectreConsole) module. This requirement will be installed automatically if you don't have it already. Install the module from the PowerShell Gallery.
+This module requires PowerShell 7 and has dependencies on the [pwshSpectreConsole](https://github.com/ShaunLawrie/PwshSpectreConsole) and `Microsoft.PowerShell.ThreadJob` modules. These requirements will be installed automatically if they are not found.
+
+For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module. The module may not render images properly in VSCode nor has it been tested beyond Windows Terminal.
+
+Install the `PSPodcast` module from the PowerShell Gallery.
 
 ```powershell
 Install-PSResource PSPodcast
 ```
 
-For best results, you should be using at least version 2.3.0 of the `pwshSpectreConsole` module.
-
-> *The module may not render images properly in VSCode.*
+> *__This module and its primary author are not affiliated with The PowerShell Podcast or PDQ.com__.*
 
 ## Module Commands
 
@@ -33,7 +35,7 @@ Run `Get-PSPodcastModule` to see the module commands and their descriptions. The
 
 ![Get-PSPodcastModule](images/get-pspodcastmodule.png)
 
-> *__This module and its primary author are not affiliated with The PowerShell Podcast or PDQ.com__.*
+
 
 ## Module Import
 
@@ -244,7 +246,7 @@ The show title is clickable link.
 
 #### Use Spectre Formatting
 
-Finally, because this module has the `pwshSpectreConsole` module as a dependency, you can use the `Format-SpectrePanel` or `Format-SpectreTable commands to display podcast episode information.
+Finally, because this module has the `pwshSpectreConsole` module as a dependency, you can use the `Format-SpectrePanel` or `Format-SpectreTable` commands to display podcast episode information.
 
 ```powershell
 $show = Get-PSPodcast -episode 166
@@ -271,6 +273,8 @@ Format-SpectreTable -Title $show.Title -Data @($show.description,"`n",$show.onli
 ```
 
 ![Format-SpectreTable](images/custom-table.png)
+
+Many of the commands have formatting built-in, which is normally not a PowerShell scripting best practice, but it eliminates the need to create complicated custom format files. All commands can write unformatted objects to the pipeline for traditional PowerShell use or if you want to create your own formatting. Look for the `-DataOnly` parameter, which has an alias of `-Raw`.
 
 ## [Save-PSPodcast](docs/Save-PSPodcast.md)
 
@@ -367,7 +371,7 @@ $PSDefaultParameterValues['Show-LatestPSPodcast:BorderColor'] = "hotpink"
 
 The `Show-LatestPSPodcast` function was created with profile integration in mind. The idea is that you can insert the command or `pspod` alias into your PowerShell profile script. Then, every time you start a new PowerShell session, the latest episode will be displayed. However, if you open new PowerShell sessions often, this might get tedious.
 
-If you want to include the command in your profile, it is recommended you include the `-Profile` parameter.
+If you want to include the `Show-LatestPSPodcast` command in your profile, it is recommended you include the `-Profile` parameter.
 
 ```powershell
 Try {
@@ -396,6 +400,8 @@ Mode                 LastWriteTime         Length Name
 If the flag file exists, __and__ you use the `-Profile` parameter, the command will test the `LastWriteTime` property. If it is greater than 24 hours, the command will display the latest episode and update the flag file. If the file is less than 24 hours, the command will not display anything. This should make it possible to have the command in your profile without it displaying every time you start a new session.
 
 You can force display of the latest show by omitting the `-Profile` parameter.
+
+One thing to be keep in mind when using the `-Profile` parameter, when the module is imported, if the feed XML file does not exist or is older than 24 hours, it will be downloaded via a thread job. `Show-LatestPSPodcast` should detect if a download job is running and wait. There are two potential results. First, loading your profile might take a little longer if the XML file needs to be downloaded. You might also get an error if the download is completing and the function attempts to access the file before it is fully written. If this happens, you should be able to ignore the error and run `pspod` or `Show-LatestPSPodcast` again.
 
 __If you uninstall the module you will need to manually delete the flag file.__
 
@@ -440,7 +446,7 @@ NativeThreadId  : 31352
 ManagedThreadId : 18
 ```
 
-I use this to aid in development. You might want to use it for troubleshooting or your own development should you for this module.
+I use this to aid in development. You might want to use it for troubleshooting or your development should you for this module.
 
 ```powershell
 PS C:\> $iv[0].MessageData

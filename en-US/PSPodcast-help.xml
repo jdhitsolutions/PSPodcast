@@ -50,6 +50,17 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+          <maml:name>DataOnly</maml:name>
+          <maml:description>
+            <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -81,6 +92,18 @@
         <maml:name>Force</maml:name>
         <maml:description>
           <maml:para>Force downloading the RSS feed.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -129,6 +152,10 @@
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>https://jdhitsolutions.com/yourls/7129c6</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Home</maml:linkText>
+        <maml:uri>https://powershellpodcast.podbean.com/</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -558,9 +585,33 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-PSPodcastModule</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+          <maml:name>DataOnly</maml:name>
+          <maml:description>
+            <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
-    <command:parameters />
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
@@ -603,7 +654,7 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Command</maml:linkText>
-        <maml:uri> https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&amp;WT.mc_id=ps-gethelp</maml:uri>
+        <maml:uri>https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5&amp;WT.mc_id=ps-gethelp</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-Module</maml:linkText>
@@ -663,6 +714,17 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
           </dev:type>
           <dev:defaultValue>GreenYellow</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+          <maml:name>DataOnly</maml:name>
+          <maml:description>
+            <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -701,6 +763,18 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
           <maml:uri />
         </dev:type>
         <dev:defaultValue>Yellow</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -820,6 +894,17 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+          <maml:name>DataOnly</maml:name>
+          <maml:description>
+            <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -870,6 +955,18 @@ Online : https://powershellpodcast.podbean.com/e/learning-by-doing-with-don-jone
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -1129,6 +1226,7 @@ Mode                 LastWriteTime         Length Name
           <maml:name>Profile</maml:name>
           <maml:description>
             <maml:para>Display the podcast information once every 24 hours. Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.</maml:para>
+            <maml:para>Note that if running this command in a profile script, and the module needs to download the XML feed, your profile will run a little slower than usual as the file must be downloaded first. You might also get an error if the download is completing and the function attempts to access the file before it is fully written. If this happens, you should be able to ignore the error and run pspod or Show-LatestPSPodcast again.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1152,6 +1250,17 @@ Mode                 LastWriteTime         Length Name
           <maml:name>Full</maml:name>
           <maml:description>
             <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+          <maml:name>DataOnly</maml:name>
+          <maml:description>
+            <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1190,6 +1299,7 @@ Mode                 LastWriteTime         Length Name
         <maml:name>Profile</maml:name>
         <maml:description>
           <maml:para>Display the podcast information once every 24 hours. Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.</maml:para>
+          <maml:para>Note that if running this command in a profile script, and the module needs to download the XML feed, your profile will run a little slower than usual as the file must be downloaded first. You might also get an error if the download is completing and the function attempts to access the file before it is fully written. If this happens, you should be able to ignore the error and run pspod or Show-LatestPSPodcast again.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1226,6 +1336,18 @@ Mode                 LastWriteTime         Length Name
         <maml:name>Full</maml:name>
         <maml:description>
           <maml:para>Display the full show description. The default is to show the first paragraph of the episode description. This parameter was added in version 0.7.0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Raw">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Write raw, unformatted data to the pipeline.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>

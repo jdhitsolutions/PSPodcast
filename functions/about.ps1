@@ -15,7 +15,10 @@ Function Get-AboutPSPodcast {
         [string]$BorderColor = "Gold1",
 
         [Parameter(HelpMessage = 'Force downloading the RSS feed.')]
-        [switch]$Force
+        [switch]$Force,
+        [Parameter(HelpMessage = "Write raw, unformatted data to the pipeline.")]
+        [Alias("Raw")]
+        [switch]$DataOnly
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -23,6 +26,7 @@ Function Get-AboutPSPodcast {
     Write-Verbose "[$((Get-Date).TimeOfDay)] Using pwshSpectreConsole version $((Get-Module pwshSpectreConsole).version)"
 
     _getFeed -Force:$Force
+
     $dt = (Get-Item $tmpXml).LastWriteTime
     Write-Verbose "[$((Get-Date).TimeOfDay)] Using data from $tmpXml [$dt]"
     [xml]$feed = Get-Content $tmpXml
@@ -37,15 +41,6 @@ Function Get-AboutPSPodcast {
     $title = "[link=$homeLink]The PowerShell Podcast[/]"
     $totalEpisodes = $feed.rss.channel.item.count
 
-<#     $data = @"
-
-[italic $TextColor]$description[/]
-Hosted by     : [link=https://andrewpla.tech/]Andrew Pla[/]
-Last updated  : $($lastUpdate.ToLongDateString())
-Total Episodes: $totalEpisodes
-Sponsored by  : [link=https://pdq.com]PDQ.com[/]
-
-"@ #>
 
 # 12 May 2025 Revised to display an image of Andrew.
     $andrew = Get-SpectreImage $PSScriptRoot\..\images\andrew-pla.jpg -MaxWidth 12
@@ -61,14 +56,20 @@ Sponsored by  : [link=https://pdq.com]PDQ.com[/]
 
     $data = @($R1,$R2) | Format-SpectreColumns
 
-    #insert a return after the prompt
-    Write-Host "`r"
-    @($img,$data) | Format-SpectreColumns | Format-SpectrePanel -Title $title -Color $BorderColor | Out-SpectreHost
+    if ($DataOnly) {
+        [PSCustomObject]@{
+            Host          = 'Andrew Pla'
+            LastUpdate    = $lastUpdate
+            TotalEpisodes = $totalEpisodes
+            Online        = 'https://powershellpodcast.podbean.com/'
+            Sponsor       = 'PDQ.com'
+        }
+    }
+    else {
+        #insert a return after the prompt
+        Write-Host "`r"
+        @($img,$data) | Format-SpectreColumns | Format-SpectrePanel -Title $title -Color $BorderColor | Out-SpectreHost
+    }
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 }
-
-<# --> [link=https://www.linkedin.com/in/andrewplatech/]Find Andrew on LinkedIn[/]
---> [link=https://bsky.app/profile/andrewpla.tech]Find Andrew on Bluesky[/] #>
-#@($img,$data) | Format-SpectreRows | Format-SpectrePanel -Title $title -Color Gold1 | Out-SpectreHost
-#@($img,$data) | Format-SpectreColumns -Title $title -Color Gold1 | Out-SpectreHost

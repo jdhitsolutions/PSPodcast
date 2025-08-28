@@ -14,7 +14,7 @@ Display the most recent PowerShell Podcast episode.
 ## SYNTAX
 
 ```yaml
-Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [-Full] [-Last <Int32>]  [<CommonParameters>]
+Show-LatestPSPodcast [[-TitleColor] <String>] [[-LinkColor] <String>] [[-BorderColor] <String>] [-Profile] [-Full] [-Last <Int32>] [-DataOnly][<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -85,8 +85,9 @@ Accept wildcard characters: False
 
 ### -Profile
 
-Display the podcast information once every 24 hours.
-Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.
+Display the podcast information once every 24 hours. Use this when running this command in your profile script. When you use this parameter, the command will create a flag file in $HOME. The LastWriteTime property is checked to determine if the command should run again. When used in a profile script, this will prevent the command from running every time you open a new PowerShell session.
+
+Note that if running this command in a profile script, and the module needs to download the XML feed, your profile will run a little slower than usual as the file must be downloaded first. You might also get an error if the download is completing and the function attempts to access the file before it is fully written. If this happens, you should be able to ignore the error and run pspod or Show-LatestPSPodcast again.
 
 ```yaml
 Type: SwitchParameter
@@ -140,6 +141,22 @@ Display the full show description. The default is to show the first paragraph of
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DataOnly
+
+Write raw, unformatted data to the pipeline.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Raw
 
 Required: False
 Position: Named

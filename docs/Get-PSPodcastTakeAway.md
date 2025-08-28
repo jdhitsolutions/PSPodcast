@@ -15,7 +15,7 @@ Show episode key points.
 
 ```yaml
 Get-PSPodcastTakeAway [-PSPodcastInfo] <Object> [[-TitleColor] <String>] [[-LinkColor] <String>]
- [[-BorderColor] <String>] [<CommonParameters>]
+ [[-BorderColor] <String>] [-DataOnly] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -93,6 +93,22 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DataOnly
+
+Write raw, unformatted data to the pipeline.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Raw
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

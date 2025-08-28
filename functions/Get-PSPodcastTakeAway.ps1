@@ -25,7 +25,11 @@ Function Get-PSPodcastTakeAway {
         [Parameter(HelpMessage = "The color of the border.")]
         [ValidateScript({[Spectre.Console.Color].GetProperties().name -contains $_},
         ErrorMessage = "The value '{0}' is not a valid SpectreConsole color.")]
-        [string]$BorderColor = "GreenYellow"
+        [string]$BorderColor = "GreenYellow",
+
+        [Parameter(HelpMessage = "Write raw, unformatted data to the pipeline.")]
+        [Alias("Raw")]
+        [switch]$DataOnly
     )
 
     Begin {
@@ -35,23 +39,30 @@ Function Get-PSPodcastTakeAway {
     } #begin
     Process {
          Write-Verbose "[$((Get-Date).TimeOfDay)] Getting key takeaways from episode $($PSPodcastInfo.Episode)"
-         Write-Information ($PSPodcastInfo | Select Title,Episode,KeyPoints | ConvertTo-Json)
-        $show = @"
+         Write-Information ($PSPodcastInfo | Select-Object Title,Episode,Date,KeyPoints | ConvertTo-Json)
+
+         if ($DataOnly) {
+            $PSPodcastInfo | Select-Object Title,Episode,Date,KeyPoints
+         }
+         else {
+
+$show = @"
 [bold $TitleColor]$($PSPodcastInfo.title) :microphone: $($PSPodcastInfo.Length)[/]
 [italic]$($PSPodcastInfo.KeyPoints | ForEach-Object -begin {"`n"} -process {"* $($_.trim())`n"})[/]
 [underline $LinkColor link]$($PSPodcastInfo.Link)[/]
 "@
 
-        $title = "Key TakeAways: Episode {0} {1}" -f $PSPodcastInfo.Episode, $PSPodcastInfo.Date.ToShortDateString()
-        Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
-        $paramHash = @{
-            Data    = $show
-            Header  = $title
-            Border  = 'Rounded'
-            Color   = $BorderColor
-        }
+             $title = "Key TakeAways: Episode {0} {1}" -f $PSPodcastInfo.Episode, $PSPodcastInfo.Date.ToShortDateString()
+             Write-Verbose "[$((Get-Date).TimeOfDay)] $title"
+             $paramHash = @{
+                Data    = $show
+                Header  = $title
+                Border  = 'Rounded'
+                Color   = $BorderColor
+                }
 
-        Format-SpectrePanel @paramHash | Out-SpectreHost
+                Format-SpectrePanel @paramHash | Out-SpectreHost
+            }
 
     } #process
      End {
