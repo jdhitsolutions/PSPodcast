@@ -20,7 +20,7 @@ Get-AboutPSPodcast [[-TextColor] <String>] [[-BorderColor] <String>] [-Force] [-
 
 ## DESCRIPTION
 
-This is a simple function to display information about The PowerShell Podcast.
+This is a simple function to display information about The PowerShell Podcast. The display layout may depend on the width of your console window.
 
 ## EXAMPLES
 

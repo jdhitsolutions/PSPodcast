@@ -99,7 +99,12 @@ Function Get-PSPodcast {
                 Write-Information -MessageData $item -tag raw
                 #convert the duration to a TimeSpan
                 $timeElements = $item.duration -split ':'
-                if ($timeElements.count -eq 3) {
+                #2 Sept 2025 fix duration change in the RSS feed. Issue #2
+                if ($timeElements.Count -eq 1) {
+                    Write-Verbose "[$((Get-Date).TimeOfDay)] Creating a time span from $($timeElements[0]) seconds"
+                    $runTime = New-TimeSpan -Seconds ([int32]$timeElements[0])
+                }
+                elseif ($timeElements.count -eq 3) {
                     $runTime = New-TimeSpan -Hours $timeElements[0] -Minutes $timeElements[1] -Seconds $timeElements[2]
                 }
                 elseif ($timeElements.count -eq 2) {

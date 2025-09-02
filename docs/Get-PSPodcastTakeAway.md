@@ -20,7 +20,7 @@ Get-PSPodcastTakeAway [-PSPodcastInfo] <Object> [[-TitleColor] <String>] [[-Link
 
 ## DESCRIPTION
 
-Pipe a PSPodcastInfo object to this cmdlet to show the key points from the episode in a formatted panel. This command has an alias of takeaway. You can also view the key points by viewing the KeyPoints property of the PSPodcastInfo object.
+Pipe a PSPodcastInfo object to this cmdlet to show the key points from the episode in a formatted panel. This command has an alias of takeaway. You can also view the key points by viewing the KeyPoints property of the PSPodcastInfo object. Note that not every episode will have defined key points.
 
 ## EXAMPLES
 

@@ -3,12 +3,21 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and is maintained using the [ChangelogManagement](https://github.com/natescherer/ChangelogManagement) module.
 
 ## [Unreleased]
+
+## [1.0.0] - 2025-09-02
+
 ### Added
+
 - Added the parameter `DataOnly` with an alias of `Raw` to `Get-PSPodcastModule`, ` Get-AboutPSPodcast`,`Get-PSPodcastTakeaway`, `Show-LatestPSPodcast`, and `Get-PSPodcastShowNotes` to write unformatted data to the pipeline.
 - Added the `Microsoft.PowerShell.ThreadJob` module as a requirement. [[Issue #1](https://github.com/jdhitsolutions/PSPodcast/issues/1)]
 
 ### Changed
+
 - Revised module to download feed XML file using a thread job on module import.
+
+### Fixed
+
+- Updated `Get-PSPodcast` to handle change to duration value in the RSS feed. [[Issue #2](https://github.com/jdhitsolutions/PSPodcast/issues/2)]
 
 ## [0.8.0] - 2025-08-23
 
@@ -136,7 +145,8 @@ This is an unpublished version.
 
 - Added initial commands and aliases.
 
-[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.8.0..HEAD
+[Unreleased]: https://github.com/jdhitsolutions/PSPodcast/compare/v1.0.0..HEAD
+[1.0.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.8.0..v1.0.0
 [0.8.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.7.0..v0.8.0
 [0.7.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.6.0..v0.7.0
 [0.6.0]: https://github.com/jdhitsolutions/PSPodcast/compare/v0.5.0..v0.6.0
