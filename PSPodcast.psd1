@@ -21,6 +21,7 @@
         'Get-PSPodcastModule',
         'Get-AboutPSPodcast',
         'Get-PSPodcastTakeAway'
+        'Out-PodView'
     )
     CmdletsToExport      = @()
     VariablesToExport    = @()

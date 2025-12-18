@@ -34,7 +34,10 @@ Function Get-PSPodcast {
         [switch]$Full,
 
         [Parameter(HelpMessage = 'Force downloading the RSS feed.')]
-        [switch]$Force
+        [switch]$Force,
+
+        [Parameter(HelpMessage = 'Use custom formatter to display episode information with Sixel graphics.')]
+        [Switch] $Sixel
     )
 
     Write-Verbose "[$((Get-Date).TimeOfDay)] Starting $($MyInvocation.MyCommand) [$modVer]"
@@ -78,14 +81,14 @@ Function Get-PSPodcast {
                 $data = $feed.rss.channel.item | Select-Object -First $Last
             }
             'episode' {
-                 Write-Verbose "[$((Get-Date).TimeOfDay)] Searching for episode $Episode"
+                Write-Verbose "[$((Get-Date).TimeOfDay)] Searching for episode $Episode"
                 $ns = @{
                     itunes = "http://www.itunes.com/dtds/podcast-1.0.dtd"
                 }
-                  $xPath = "//item[itunes:episode=$Episode]"
-                  Write-Information -MessageData $xPath -tag raw
-                  $data = (Select-Xml -Xml $feed -XPath $xPath -Namespace $ns).Node
-            }
+                $xPath = "//item[itunes:episode=$Episode]"
+                Write-Information -MessageData $xPath -tag raw
+                $data = (Select-Xml -Xml $feed -XPath $xPath -Namespace $ns).Node
+                }
             'all' {
                 #get all episodes
                 Write-Verbose "[$((Get-Date).TimeOfDay)] Retrieving all episodes from the RSS feed $tmpXml"
@@ -140,7 +143,7 @@ Function Get-PSPodcast {
                 [regex]$rxLink = "(?<=<li>)(?!.*https)([^<]*)(?=\<\/li)"
                 $keyPoints = $rxLink.Matches($item.description.'#cdata-section').value
 
-                [PSCustomObject]@{
+                $PodEpisode = [PSCustomObject]@{
                     PSTypeName   = 'PSPodcastInfo'
                     Title        = $item.title[0]
                     Date         = $item.pubDate -as [datetime]
@@ -152,6 +155,12 @@ Function Get-PSPodcast {
                     DownloadLink = $item.enclosure.url
                     ShowLinks    = $Links -split ' '
                     YouTube      = $YouTubeLink
+                }
+                if ($Sixel.IsPresent) {
+                    Out-PodView -Episode $PodEpisode
+                }
+                else {
+                    $PodEpisode
                 }
             } #foreach item
             #clean up the temp file
@@ -168,7 +177,3 @@ Function Get-PSPodcast {
     Write-Verbose "[$((Get-Date).TimeOfDay)] Ending $($MyInvocation.MyCommand)"
 
 } #close function
-
-
-
-
