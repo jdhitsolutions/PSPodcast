@@ -27,17 +27,17 @@ https://github.com/jdhitsolutions/PSScriptTools
           <TableColumnHeader>
             <Label>Date</Label>
             <Width>23</Width>
-            <Alignment>left</Alignment>
+            <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Length</Label>
             <Width>11</Width>
-            <Alignment>left</Alignment>
+            <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Description</Label>
             <Width>425</Width>
-            <Alignment>left</Alignment>
+            <Alignment>Left</Alignment>
           </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
@@ -67,8 +67,8 @@ https://github.com/jdhitsolutions/PSScriptTools
         <TypeName>PSPodcastInfo</TypeName>
       </ViewSelectedBy>
       <ListControl>
-        <listEntries>
-          <listEntry>
+        <ListEntries>
+          <ListEntry>
             <ListItems>
               <ListItem>
                 <Label>Title</Label>
@@ -103,8 +103,8 @@ https://github.com/jdhitsolutions/PSScriptTools
                 <PropertyName>YouTube</PropertyName>
               </ListItem>
             </ListItems>
-          </listEntry>
-        </listEntries>
+          </ListEntry>
+        </ListEntries>
       </ListControl>
     </View>
     <View>
@@ -120,17 +120,17 @@ https://github.com/jdhitsolutions/PSScriptTools
           <TableColumnHeader>
             <Label>Episode</Label>
             <Width>10</Width>
-            <Alignment>center</Alignment>
+            <Alignment>Center</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Date</Label>
             <Width>23</Width>
-            <Alignment>left</Alignment>
+            <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Title</Label>
             <Width>48</Width>
-            <Alignment>left</Alignment>
+            <Alignment>Left</Alignment>
           </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>

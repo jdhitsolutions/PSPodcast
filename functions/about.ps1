@@ -32,7 +32,7 @@ Function Get-AboutPSPodcast {
     [xml]$feed = Get-Content $tmpXml
     $channel = $feed.rss.channel
 
-    $img = Get-SpectreImage $PSScriptRoot\..\images\podcast-logo-thumbnail.jpg -MaxWidth 20
+    $img = Get-SpectreImage (Join-Path $PSScriptRoot '..' 'images' 'podcast-logo-thumbnail.jpg') -MaxWidth 20
 
     #break $summary into a 80 character line but break spaces not the middle of a word
     $description = $channel.description -split '(.{1,80})(\s|$)' | Where-Object { $_ -ne "" } | ForEach-Object { $_.Trim() } | Where {$_} | Out-String
@@ -43,7 +43,7 @@ Function Get-AboutPSPodcast {
 
 
 # 12 May 2025 Revised to display an image of Andrew.
-    $andrew = Get-SpectreImage $PSScriptRoot\..\images\andrew-pla.jpg -MaxWidth 12
+    $andrew = Get-SpectreImage (Join-Path $PSScriptRoot '..' 'images' 'andrew-pla.jpg') -MaxWidth 12
     $R1 = "[italic $TextColor]$description[/]"
 $info = @"
 Hosted by     : [$BorderColor link=https://andrewpla.tech/]Andrew Pla[/]
