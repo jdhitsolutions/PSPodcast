@@ -14,13 +14,14 @@
     TypesToProcess       = @('types/PSPodcastInfo.types.ps1xml')
     FormatsToProcess     = @('formats/PSPodcastInfo.format.ps1xml')
     FunctionsToExport    = @(
-        'Get-PSPodcast',
-        'Show-LatestPSPodcast',
-        'Save-PSPodcast',
-        'Get-PSPodcastShowNotes',
-        'Get-PSPodcastModule',
-        'Get-AboutPSPodcast',
+        'Get-PSPodcast'
+        'Show-LatestPSPodcast'
+        'Save-PSPodcast'
+        'Get-PSPodcastShowNotes'
+        'Get-PSPodcastModule'
+        'Get-AboutPSPodcast'
         'Get-PSPodcastTakeAway'
+        'Out-PodView'
     )
     CmdletsToExport      = @()
     VariablesToExport    = @()
